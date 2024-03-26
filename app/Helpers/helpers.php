@@ -1,5 +1,11 @@
 <?php
 
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use BaconQrCode\Writer;
+use BaconQrCode\Renderer\RendererStyle\RendererStyle;
+use BaconQrCode\Renderer\Image\SvgImageBackEnd;
+use BaconQrCode\Renderer\ImageRenderer;
+
 if (!function_exists('settings')) {
     function settings() {
         $settings = cache()->remember('settings', 24*60, function () {
@@ -7,6 +13,43 @@ if (!function_exists('settings')) {
         });
 
         return $settings;
+    }
+}
+
+if(!function_exists('generateQrCode')){
+    function generateQrCode($inputString)
+    {
+        $svgImageBackend = new SvgImageBackEnd();
+
+        $rendererStyle = new RendererStyle(200, 0);
+
+        $imageRenderer = new ImageRenderer($rendererStyle, $svgImageBackend);
+
+        $writer = new Writer($imageRenderer);
+        $qrCode = $writer->writeString($inputString);
+
+        return $qrCode;
+    }
+}
+
+if(!function_exists('generatePincode')){
+    function generatePincode($length = 4) {
+        $pin = "";
+        for ($i = 0; $i < $length; $i++) {
+            $pin .= mt_rand(0, 9);
+        }
+        return $pin;
+    }
+}
+
+if(!function_exists('generateGstNo')){
+    function generateGstNo() {
+        $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $gst_number = 'GST';
+        for ($i = 0; $i < 10; $i++) {
+            $gst_number .= $characters[rand(0, strlen($characters) - 1)];
+        }
+        return $gst_number;
     }
 }
 

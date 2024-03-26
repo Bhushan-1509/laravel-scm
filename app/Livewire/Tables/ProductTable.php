@@ -5,7 +5,6 @@ namespace App\Livewire\Tables;
 use Livewire\Component;
 use App\Models\Product;
 use Livewire\WithPagination;
-
 class ProductTable extends Component
 {
     use WithPagination;
@@ -33,12 +32,10 @@ class ProductTable extends Component
 
     public function render()
     {
-        return view('livewire.tables.product-table', [
-            'products' => Product::where("user_id",auth()->id())
-                ->with(['category', 'unit'])
-                ->search($this->search)
-                ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
-                ->paginate($this->perPage)
-        ]);
+        $products = Product::query()
+            ->where('company_name', 'like', '%' . trim($this->search) . '%')
+            ->orWhere('challan_no', 'like', '%' . trim($this->search) . '%')
+            ->paginate($this->perPage);
+        return view('livewire.tables.product-table', ['products' => $products]);
     }
 }

@@ -24,35 +24,35 @@
                     @method('put')
 
                     <div class="row">
-                        <div class="col-lg-4">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h3 class="card-title">
-                                        {{ __('Product Image') }}
-                                    </h3>
+{{--                        <div class="col-lg-4">--}}
+{{--                            <div class="card">--}}
+{{--                                <div class="card-body">--}}
+{{--                                    <h3 class="card-title">--}}
+{{--                                        {{ __('Product Image') }}--}}
+{{--                                    </h3>--}}
 
-                                    <img class="img-account-profile mb-2"
-                                        src="{{ $product->product_image ? asset('storage/' . $product->product_image) : asset('assets/img/products/default.webp') }}"
-                                        alt="" id="image-preview">
+{{--                                    <img class="img-account-profile mb-2"--}}
+{{--                                        src="{{ $product->product_image ? asset('storage/' . $product->product_image) : asset('assets/img/products/default.webp') }}"--}}
+{{--                                        alt="" id="image-preview">--}}
 
-                                    <div class="small font-italic text-muted mb-2">
-                                        JPG or PNG no larger than 2 MB
-                                    </div>
+{{--                                    <div class="small font-italic text-muted mb-2">--}}
+{{--                                        JPG or PNG no larger than 2 MB--}}
+{{--                                    </div>--}}
 
-                                    <input type="file" accept="image/*" id="image" name="product_image"
-                                        class="form-control @error('product_image') is-invalid @enderror"
-                                        onchange="previewImage();">
+{{--                                    <input type="file" accept="image/*" id="image" name="product_image"--}}
+{{--                                        class="form-control @error('product_image') is-invalid @enderror"--}}
+{{--                                        onchange="previewImage();">--}}
 
-                                    @error('product_image')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
+{{--                                    @error('product_image')--}}
+{{--                                        <div class="invalid-feedback">--}}
+{{--                                            {{ $message }}--}}
+{{--                                        </div>--}}
+{{--                                    @enderror--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
-                        <div class="col-lg-8">
+                        <div class="col-lg-12">
 
                             <div class="card">
                                 <div class="card-body">
@@ -64,15 +64,15 @@
                                         <div class="col-md-12">
                                             <div class="mb-3">
                                                 <label for="name" class="form-label">
-                                                    {{ __('Name') }}
+                                                    {{ __('Company Name') }}
                                                     <span class="text-danger">*</span>
                                                 </label>
 
-                                                <input type="text" id="name" name="name"
-                                                    class="form-control @error('name') is-invalid @enderror"
-                                                    placeholder="Product name" value="{{ old('name', $product->name) }}">
+                                                <input type="text" id="companyName" name="companyName"
+                                                    class="form-control @error('companyName') is-invalid @enderror"
+                                                    placeholder="Product name" value="{{ old('name', $product->company_name) }}">
 
-                                                @error('name')
+                                                @error('companyName')
                                                     <div class="invalid-feedback">
                                                         {{ $message }}
                                                     </div>
@@ -83,21 +83,16 @@
                                         <div class="col-sm-6 col-md-6">
                                             <div class="mb-3">
                                                 <label for="category_id" class="form-label">
-                                                    Product category
+                                                    Challan No
                                                     <span class="text-danger">*</span>
                                                 </label>
 
-                                                <select name="category_id" id="category_id"
-                                                    class="form-select @error('category_id') is-invalid @enderror">
-                                                    <option selected="" disabled="">Select a category:</option>
-                                                    @foreach ($categories as $category)
-                                                        <option value="{{ $category->id }}"
-                                                            @if (old('category_id', $product->category_id) == $category->id) selected="selected" @endif>
-                                                            {{ $category->name }}</option>
-                                                    @endforeach
-                                                </select>
+                                                <input type="text" id="challanNo" name="challanNo"
+                                                       class="form-control @error('challanNo') is-invalid @enderror"
+                                                       placeholder="Example : CHL-2024-ABC-123456"
+                                                       value="{{ old('challanNo', $product->challan_no) }}">
 
-                                                @error('category_id')
+                                                @error('challanNo')
                                                     <div class="invalid-feedback">
                                                         {{ $message }}
                                                     </div>
@@ -109,24 +104,16 @@
                                         <div class="col-sm-6 col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label" for="unit_id">
-                                                    {{ __('Unit') }}
+                                                    {{ __('Type') }}
                                                     <span class="text-danger">*</span>
                                                 </label>
 
-                                                <select name="unit_id" id="unit_id"
-                                                    class="form-select @error('unit_id') is-invalid @enderror">
-                                                    <option selected="" disabled="">
-                                                        Select a unit:
-                                                    </option>
+                                                <input type="text" id="type" name="type"
+                                                       class="form-control @error('type') is-invalid @enderror"
+                                                       placeholder="0"
+                                                       value="{{ old('type', $product->type) }}">
 
-                                                    @foreach ($units as $unit)
-                                                        <option value="{{ $unit->id }}"
-                                                            @if (old('unit_id', $product->unit_id) == $unit->id) selected="selected" @endif>
-                                                            {{ $unit->name }}</option>
-                                                    @endforeach
-                                                </select>
-
-                                                @error('unit_id')
+                                                @error('type')
                                                     <div class="invalid-feedback">
                                                         {{ $message }}
                                                     </div>
@@ -137,16 +124,16 @@
                                         <div class="col-sm-6 col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label" for="buying_price">
-                                                    Buying price
+                                                    APM Challan No
                                                     <span class="text-danger">*</span>
                                                 </label>
 
-                                                <input type="text" id="buying_price" name="buying_price"
-                                                    class="form-control @error('buying_price') is-invalid @enderror"
+                                                <input type="text" id="apmChallanNo" name="apmChallanNo"
+                                                    class="form-control @error('apmChallanNo') is-invalid @enderror"
                                                     placeholder="0"
-                                                    value="{{ old('buying_price', $product->buying_price) }}">
+                                                    value="{{ old('apmChallanNo', $product->apm_challan_no) }}">
 
-                                                @error('buying_price')
+                                                @error('apmChallanNo')
                                                     <div class="invalid-feedback">
                                                         {{ $message }}
                                                     </div>
@@ -157,16 +144,16 @@
                                         <div class="col-sm-6 col-md-6">
                                             <div class="mb-3">
                                                 <label for="selling_price" class="form-label">
-                                                    Selling price
+                                                    Size
                                                     <span class="text-danger">*</span>
                                                 </label>
 
-                                                <input type="text" id="selling_price" name="selling_price"
-                                                    class="form-control @error('selling_price') is-invalid @enderror"
+                                                <input type="text" id="size" name="size"
+                                                    class="form-control @error('size') is-invalid @enderror"
                                                     placeholder="0"
-                                                    value="{{ old('selling_price', $product->selling_price) }}">
+                                                    value="{{ old('size', $product->size) }}">
 
-                                                @error('selling_price')
+                                                @error('size')
                                                     <div class="invalid-feedback">
                                                         {{ $message }}
                                                     </div>
@@ -180,29 +167,34 @@
                                                     {{ __('Quantity') }}
                                                 </label>
 
-                                                <input class="form-control" name="quantity" type="text" readonly value="{{ old('quantity', $product->quantity) }}"  required="true" aria-required="true" style="color: var(--tblr-secondary);background-color: var(--tblr-bg-surface-secondary); opacity: 1;"/>
+                                                <input class="form-control" name="quantity" id="quantity" type="text" readonly value="{{ old('quantity', $product->quantity) }}"  required="true" aria-required="true" style="color: var(--tblr-secondary);background-color: var(--tblr-bg-surface-secondary); opacity: 1;"/>
 
 
                                                 {{-- <input type="text" id="quantity" name="quantity"
                                                     class="form-control"
                                                     min="0" value="{{ old('quantity', $product->quantity) }}"
                                                     placeholder="0" disabled > --}}
+                                                @error('quantity')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
                                             </div>
                                         </div>
 
                                         <div class="col-sm-6 col-md-6">
                                             <div class="mb-3">
                                                 <label for="quantity_alert" class="form-label">
-                                                    {{ __('Quantity Alert') }}
+                                                    {{ __('For') }}
                                                     <span class="text-danger">*</span>
                                                 </label>
 
-                                                <input type="number" id="quantity_alert" name="quantity_alert"
-                                                    class="form-control @error('quantity_alert') is-invalid @enderror"
+                                                <input type="text" id="for" name="for"
+                                                    class="form-control @error('for') is-invalid @enderror"
                                                     min="0" placeholder="0"
-                                                    value="{{ old('quantity_alert', $product->quantity_alert) }}">
+                                                    value="{{ old('for', $product->for) }}">
 
-                                                @error('quantity_alert')
+                                                @error('for')
                                                     <div class="invalid-feedback">
                                                         {{ $message }}
                                                     </div>
@@ -213,15 +205,15 @@
                                         <div class="col-sm-6 col-md-6">
                                             <div class="mb-3">
                                                 <label for="tax" class="form-label">
-                                                    {{ __('Tax') }}
+                                                    {{ __('Cutting Size') }}
                                                 </label>
 
-                                                <input type="number" id="tax" name="tax"
-                                                    class="form-control @error('tax') is-invalid @enderror"
+                                                <input type="number" id="cuttingSize" name="cuttingSize"
+                                                    class="form-control @error('cuttingSize') is-invalid @enderror"
                                                     min="0" placeholder="0"
-                                                    value="{{ old('tax', $product->tax) }}">
+                                                    value="{{ old('cuttingSize', $product->tax) }}">
 
-                                                @error('tax')
+                                                @error('cuttingSize')
                                                     <div class="invalid-feedback">
                                                         {{ $message }}
                                                     </div>
@@ -232,31 +224,58 @@
                                         <div class="col-sm-6 col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label" for="tax_type">
-                                                    {{ __('Tax Type') }}
+                                                    {{ __('Cutting Weight') }}
                                                 </label>
 
-                                                <select name="tax_type" id="tax_type"
-                                                    class="form-select @error('tax_type') is-invalid @enderror">
-                                                    @foreach (\App\Enums\TaxType::cases() as $taxType)
-                                                        <option value="{{ $taxType->value }}"
-                                                            @selected(old('tax_type', $product->tax_type) == $taxType->value)>
-                                                            {{ $taxType->label() }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-
-                                                @error('tax_type')
+                                                <input type="number" id="cuttingWeight" name="cuttingWeight"
+                                                       class="form-control @error('cuttingWeight') is-invalid @enderror"
+                                                       placeholder="0"
+                                                       value="{{ old('cuttingWeight', $product->cutting_weight) }}">
+                                                @error('cuttingWeight')
                                                     <div class="invalid-feedback">
                                                         {{ $message }}
                                                     </div>
                                                 @enderror
                                             </div>
                                         </div>
+                                        <div class="col-sm-6 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="tax_type">
+                                                    {{ __('Order No') }}
+                                                </label>
 
+                                                <input type="text" id="orderNo" name="orderNo"
+                                                       class="form-control @error('orderNo') is-invalid @enderror"
+                                                       placeholder="0"
+                                                       value="{{ old('orderNo', $product->order_no) }}">
+                                                @error('orderNo')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="tax_type">
+                                                    {{ __('Order Size') }}
+                                                </label>
+
+                                                <input type="text" id="orderSize" name="orderSize"
+                                                       class="form-control @error('orderSize') is-invalid @enderror"
+                                                       placeholder="0"
+                                                       value="{{ old('orderSize', $product->order_size) }}">
+                                                @error('orderSize')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
+                                            </div>
+                                        </div>
                                         <div class="col-md-12">
                                             <div class="mb-3 mb-0">
                                                 <label for="notes" class="form-label">
-                                                    {{ __('Notes') }}
+                                                    {{ __('notes') }}
                                                 </label>
 
                                                 <textarea name="notes" id="notes" rows="5" class="form-control @error('notes') is-invalid @enderror"
@@ -268,7 +287,7 @@
                                                     </div>
                                                 @enderror
                                             </div>
-                                        </div>`
+                                        </div>
                                     </div>
                                 </div>
 
@@ -288,6 +307,17 @@
             </div>
         </div>
     </div>
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
 @endsection
 
 @pushonce('page-scripts')

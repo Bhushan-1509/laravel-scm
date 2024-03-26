@@ -51,11 +51,11 @@
                                             Select a customer:
                                         </option>
 
-                                        @foreach ($customers as $customer)
-                                            <option value="{{ $customer->id }}" @selected( old('customer_id') == $customer->id)>
-                                                {{ $customer->name }}
-                                            </option>
-                                        @endforeach
+{{--                                        @foreach ($customers as $customer)--}}
+{{--                                            <option value="{{ $customer->id }}" @selected( old('customer_id') == $customer->id)>--}}
+{{--                                                {{ $customer->name }}--}}
+{{--                                            </option>--}}
+{{--                                        @endforeach--}}
                                     </select>
 
                                     @error('customer_id')
@@ -99,48 +99,48 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($carts as $item)
-                                        <tr>
-                                            <td>
-                                                {{ $item->name }}
-                                            </td>
-                                            <td style="min-width: 170px;">
-                                                <form></form>
-                                                <form action="{{ route('pos.updateCartItem', $item->rowId) }}" method="POST">
-                                                    @csrf
-                                                    <div class="input-group">
-                                                        <input type="number" class="form-control" name="qty" required value="{{ old('qty', $item->qty) }}">
-                                                        <input type="hidden" class="form-control" name="product_id" value="{{ $item->id }}">
+{{--                                        @forelse ($carts as $item)--}}
+{{--                                        <tr>--}}
+{{--                                            <td>--}}
+{{--                                                {{ $item->name }}--}}
+{{--                                            </td>--}}
+{{--                                            <td style="min-width: 170px;">--}}
+{{--                                                <form></form>--}}
+{{--                                                <form action="{{ route('pos.updateCartItem', $item->rowId) }}" method="POST">--}}
+{{--                                                    @csrf--}}
+{{--                                                    <div class="input-group">--}}
+{{--                                                        <input type="number" class="form-control" name="qty" required value="{{ old('qty', $item->qty) }}">--}}
+{{--                                                        <input type="hidden" class="form-control" name="product_id" value="{{ $item->id }}">--}}
 
-                                                        <div class="input-group-append text-center">
-                                                            <button type="submit" class="btn btn-icon btn-success border-none" data-toggle="tooltip" data-placement="top" title="" data-original-title="Sumbit">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l5 5l10 -10" /></svg>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </td>
-                                            <td class="text-center">
-                                                {{ $item->price }}
-                                            </td>
-                                            <td class="text-center">
-                                                {{ $item->subtotal }}
-                                            </td>
-                                            <td class="text-center">
-                                                <form action="{{ route('pos.deleteCartItem', $item->rowId) }}" method="POST">
-                                                    @method('delete')
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-icon btn-outline-danger " onclick="return confirm('Are you sure you want to delete this record?')">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7l16 0" /><path d="M10 11l0 6" /><path d="M14 11l0 6" /><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" /><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" /></svg>
-                                                    </button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                        @empty
-                                        <td colspan="5" class="text-center">
-                                            {{ __('Add Products') }}
-                                        </td>
-                                        @endforelse
+{{--                                                        <div class="input-group-append text-center">--}}
+{{--                                                            <button type="submit" class="btn btn-icon btn-success border-none" data-toggle="tooltip" data-placement="top" title="" data-original-title="Sumbit">--}}
+{{--                                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l5 5l10 -10" /></svg>--}}
+{{--                                                            </button>--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
+{{--                                                </form>--}}
+{{--                                            </td>--}}
+{{--                                            <td class="text-center">--}}
+{{--                                                {{ $item->price }}--}}
+{{--                                            </td>--}}
+{{--                                            <td class="text-center">--}}
+{{--                                                {{ $item->subtotal }}--}}
+{{--                                            </td>--}}
+{{--                                            <td class="text-center">--}}
+{{--                                                <form action="{{ route('pos.deleteCartItem', $item->rowId) }}" method="POST">--}}
+{{--                                                    @method('delete')--}}
+{{--                                                    @csrf--}}
+{{--                                                    <button type="submit" class="btn btn-icon btn-outline-danger " onclick="return confirm('Are you sure you want to delete this record?')">--}}
+{{--                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7l16 0" /><path d="M10 11l0 6" /><path d="M14 11l0 6" /><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" /><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" /></svg>--}}
+{{--                                                    </button>--}}
+{{--                                                </form>--}}
+{{--                                            </td>--}}
+{{--                                        </tr>--}}
+{{--                                        @empty--}}
+{{--                                        <td colspan="5" class="text-center">--}}
+{{--                                            {{ __('Add Products') }}--}}
+{{--                                        </td>--}}
+{{--                                        @endforelse--}}
 
                                         <tr>
                                             <td colspan="4" class="text-end">
@@ -203,49 +203,49 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($products as $product)
-                                        <tr>
-                                            {{---
-                                            <td>
-                                                <div style="max-height: 80px; max-width: 80px;">
-                                                    <img class="img-fluid"  src="{{ $product->product_image ? asset('storage/products/'.$product->product_image) : asset('assets/img/products/default.webp') }}">
-                                                </div>
-                                            </td>
-                                            ---}}
-                                            <td class="text-center">
-                                                {{ $product->name }}
-                                            </td>
-                                            <td class="text-center">
-                                                {{ $product->quantity }}
-                                            </td>
-                                            <td class="text-center">
-                                                {{ $product->unit->name }}
-                                            </td>
-                                            <td class="text-center">
-                                                {{ number_format($product->selling_price, 2) }}
-                                            </td>
-                                            <td>
-                                                <div class="d-flex">
-                                                    <form action="{{ route('pos.addCartItem', $product) }}" method="POST">
-                                                        @csrf
-                                                        <input type="hidden" name="id" value="{{ $product->id }}">
-                                                        <input type="hidden" name="name" value="{{ $product->name }}">
-                                                        <input type="hidden" name="selling_price" value="{{ $product->selling_price }}">
+{{--                                        @forelse ($products as $product)--}}
+{{--                                        <tr>--}}
+{{--                                            --}}{{-----}}
+{{--                                            <td>--}}
+{{--                                                <div style="max-height: 80px; max-width: 80px;">--}}
+{{--                                                    <img class="img-fluid"  src="{{ $product->product_image ? asset('storage/products/'.$product->product_image) : asset('assets/img/products/default.webp') }}">--}}
+{{--                                                </div>--}}
+{{--                                            </td>--}}
+{{--                                            ---}}
+{{--                                            <td class="text-center">--}}
+{{--                                                Product Name--}}
+{{--                                            </td>--}}
+{{--                                            <td class="text-center">--}}
+{{--                                                Product--}}
+{{--                                            </td>--}}
+{{--                                            <td class="text-center">--}}
+{{--                                                Unit name--}}
+{{--                                            </td>--}}
+{{--                                            <td class="text-center">--}}
+{{--                                                {{ number_format($product->selling_price, 2) }}--}}
+{{--                                            </td>--}}
+{{--                                            <td>--}}
+{{--                                                <div class="d-flex">--}}
+{{--                                                    <form action="{{ route('pos.addCartItem', $product) }}" method="POST">--}}
+{{--                                                        @csrf--}}
+{{--                                                        <input type="hidden" name="id" value="{{ $product->id }}">--}}
+{{--                                                        <input type="hidden" name="name" value="{{ $product->name }}">--}}
+{{--                                                        <input type="hidden" name="selling_price" value="{{ $product->selling_price }}">--}}
 
-                                                        <button type="submit" class="btn btn-icon btn-outline-primary">
-                                                            <x-icon.cart/>
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        @empty
-                                        <tr>
-                                            <th colspan="6" class="text-center" >
-                                                Data not found!
-                                            </th>
-                                        </tr>
-                                        @endforelse
+{{--                                                        <button type="submit" class="btn btn-icon btn-outline-primary">--}}
+{{--                                                            <x-icon.cart/>--}}
+{{--                                                        </button>--}}
+{{--                                                    </form>--}}
+{{--                                                </div>--}}
+{{--                                            </td>--}}
+{{--                                        </tr>--}}
+{{--                                        @empty--}}
+{{--                                        <tr>--}}
+{{--                                            <th colspan="6" class="text-center" >--}}
+{{--                                                Data not found!--}}
+{{--                                            </th>--}}
+{{--                                        </tr>--}}
+{{--                                        @endforelse--}}
                                     </tbody>
                                 </table>
                             </div>

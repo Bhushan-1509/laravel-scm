@@ -22,41 +22,53 @@ class UpdateCustomerRequest extends FormRequest
      */
     public function rules(): array
     {
+//        return [
+//            'photo' => [
+//                'image',
+//                'file',
+//                'max:1024'
+//            ],
+//            'name' => [
+//                'required',
+//                'string',
+//                'max:50'
+//            ],
+//            'email' => [
+//                'required',
+//                'email',
+//                'max:50'
+//            ],
+//            'phone' => [
+//                'required',
+//                'string',
+//                'max:25'
+//            ],
+//            'account_holder' => [
+//                'max:50'
+//            ],
+//            'account_number' => [
+//                'max:25'
+//            ],
+//            'bank_name' => [
+//                'max:25'
+//            ],
+//            'address' => [
+//                'required',
+//                'string',
+//                'max:100'
+//            ],
+//        ];
         return [
-            'photo' => [
-                'image',
-                'file',
-                'max:1024'
-            ],
-            'name' => [
-                'required',
-                'string',
-                'max:50'
-            ],
-            'email' => [
-                'required',
-                'email',
-                'max:50'
-            ],
-            'phone' => [
-                'required',
-                'string',
-                'max:25'
-            ],
-            'account_holder' => [
-                'max:50'
-            ],
-            'account_number' => [
-                'max:25'
-            ],
-            'bank_name' => [
-                'max:25'
-            ],
-            'address' => [
-                'required',
-                'string',
-                'max:100'
-            ],
+            'companyName' => 'required|string',
+            'address' => 'required|string',
+            'city' => 'required|string',
+            'pincode' => 'required',
+            'state' => 'required|string',
+            'gst_no' => 'required|string|max:15',
+            'companyInSez'=> 'required',
+            'companyType' => 'required',
+            'andheri' => 'required|string',
+            'vasai' => 'required|string'
         ];
     }
 }

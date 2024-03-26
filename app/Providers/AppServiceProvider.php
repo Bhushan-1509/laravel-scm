@@ -15,6 +15,11 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         //
+        $this->app->singleton(FakerGenerator::class, function () {
+            $faker = \Faker\Factory::create();
+            $faker->addProvider(new ChallanNumberProvider($faker));
+            return $faker;
+        });
     }
 
     /**

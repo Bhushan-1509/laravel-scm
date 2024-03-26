@@ -1,8 +1,10 @@
+{{--@livewireStyles--}}
+{{--@livewireScripts--}}
 <div class="card">
     <div class="card-header">
         <div>
             <h3 class="card-title">
-                {{ __('Products') }}
+                {{ __('Raw Materials') }}
             </h3>
         </div>
 
@@ -15,15 +17,15 @@
                 <div class="dropdown-menu dropdown-menu-end" style="">
                     <a href="{{ route('products.create') }}" class="dropdown-item">
                         <x-icon.plus />
-                        {{ __('Create Product') }}
+                        {{ __('Create Raw material') }}
                     </a>
                     <a href="{{ route('products.import.view') }}" class="dropdown-item">
                         <x-icon.plus />
-                        {{ __('Import Products') }}
+                        {{ __('Import Raw material') }}
                     </a>
                     <a href="{{ route('products.export.store') }}" class="dropdown-item">
                         <x-icon.plus />
-                        {{ __('Export Products') }}
+                        {{ __('Export Raw material') }}
                     </a>
                 </div>
             </div>
@@ -63,31 +65,31 @@
                     <th class="align-middle text-center w-1">
                         {{ __('No.') }}
                     </th>
+{{--                    <th scope="col" class="align-middle text-center">--}}
+{{--                        {{ __('Image') }}--}}
+{{--                    </th>--}}
                     <th scope="col" class="align-middle text-center">
-                        {{ __('Image') }}
-                    </th>
-                    <th scope="col" class="align-middle text-center">
-                        <a wire:click.prevent="sortBy('name')" href="#" role="button">
-                            {{ __('Name') }}
-                            @include('inclues._sort-icon', ['field' => 'name'])
+                        <a wire:click.prevent="sortBy('companyName')" href="#" role="button">
+                            {{ __('Company Name') }}
+                            @include('inclues._sort-icon', ['field' => 'companyName'])
                         </a>
                     </th>
                     <th scope="col" class="align-middle text-center">
-                        <a wire:click.prevent="sortBy('code')" href="#" role="button">
-                            {{ __('Code') }}
-                            @include('inclues._sort-icon', ['field' => 'code'])
+                        <a wire:click.prevent="sortBy('challanNo')" href="#" role="button">
+                            {{ __('Challan No') }}
+                            @include('inclues._sort-icon', ['field' => 'challanNo'])
                         </a>
                     </th>
                     <th scope="col" class="align-middle text-center">
-                        <a wire:click.prevent="sortBy('category_id')" href="#" role="button">
-                            {{ __('Category') }}
-                            @include('inclues._sort-icon', ['field' => 'category_id'])
+                        <a wire:click.prevent="sortBy('cuttingSize')" href="#" role="button">
+                            {{ __('Cutting Size') }}
+                            @include('inclues._sort-icon', ['field' => 'cuttingSize'])
                         </a>
                     </th>
                     <th scope="col" class="align-middle text-center">
-                        <a wire:click.prevent="sortBy('quantity')" href="#" role="button">
-                            {{ __('Quantity') }}
-                            @include('inclues._sort-icon', ['field' => 'quantity'])
+                        <a wire:click.prevent="sortBy('cuttingWeight')" href="#" role="button">
+                            {{ __('Cutting Weight') }}
+                            @include('inclues._sort-icon', ['field' => 'cuttingWeight'])
                         </a>
                     </th>
                     <th scope="col" class="align-middle text-center">
@@ -101,28 +103,28 @@
                         <td class="align-middle text-center">
                             {{ $loop->iteration }}
                         </td>
+{{--                        <td class="align-middle text-center">--}}
+{{--                            <img style="width: 90px;"--}}
+{{--                                src="{{ $product->product_image ? asset('storage/' . $product->product_image) : asset('assets/img/products/default.webp') }}"--}}
+{{--                                alt="">--}}
+{{--                        </td>--}}
                         <td class="align-middle text-center">
-                            <img style="width: 90px;"
-                                src="{{ $product->product_image ? asset('storage/' . $product->product_image) : asset('assets/img/products/default.webp') }}"
-                                alt="">
+                            {{ $product->company_name }}
                         </td>
                         <td class="align-middle text-center">
-                            {{ $product->name }}
+                            {{ $product->challan_no }}
                         </td>
                         <td class="align-middle text-center">
-                            {{ $product->code }}
+                            {{ $product->cutting_size}}
                         </td>
                         <td class="align-middle text-center">
-                            {{ $product->category ? $product->category->name : '--' }}
-                        </td>
-                        <td class="align-middle text-center">
-                            {{ $product->quantity }}
+                            {{ $product->cutting_weight }}
                         </td>
                         <td class="align-middle text-center" style="width: 10%">
                             <x-button.show class="btn-icon" route="{{ route('products.show', $product->uuid) }}" />
                             <x-button.edit class="btn-icon" route="{{ route('products.edit', $product->uuid) }}" />
                             <x-button.delete class="btn-icon" route="{{ route('products.destroy', $product->uuid) }}"
-                                onclick="return confirm('Are you sure to delete product {{ $product->name }} ?')" />
+                                onclick="return confirm('Are you sure to delete product {{ $product->name }} ?')" class="deleteBtns"/>
                         </td>
                     </tr>
                 @empty

@@ -19,19 +19,19 @@
         <div class="container-xl">
             <div class="row row-cards">
                 <div class="row">
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h3 class="card-title">
-                                    {{ __('Product Image') }}
-                                </h3>
+{{--                    <div class="col-lg-4">--}}
+{{--                        <div class="card">--}}
+{{--                            <div class="card-body">--}}
+{{--                                <h3 class="card-title">--}}
+{{--                                    {{ __('Product Image') }}--}}
+{{--                                </h3>--}}
 
-                                <img style="width: 90px;" id="image-preview"
-                                    src="{{ $product->product_image ? asset('storage/' . $product->product_image) : asset('assets/img/products/default.webp') }}"
-                                    alt="" class="img-account-profile mb-2">
-                            </div>
-                        </div>
-                    </div>
+{{--                                <img style="width: 90px;" id="image-preview"--}}
+{{--                                    src="{{ $product->product_image ? asset('storage/' . $product->product_image) : asset('assets/img/products/default.webp') }}"--}}
+{{--                                    alt="" class="img-account-profile mb-2">--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                     <!---
                     <div class="col-lg-8">
                         <div class="card">
@@ -56,7 +56,7 @@
                                         </label>
 
                                         <div class="mt-1">
-                                            {!! $barcode !!}
+{{--                                            {!! $barcode !!}--}}
                                         </div>
                                     </div>
                                 </div>
@@ -65,7 +65,7 @@
                     </div>
                     --->
 
-                    <div class="col-lg-8">
+                    <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">
@@ -76,37 +76,39 @@
                                 <table class="table table-bordered card-table table-vcenter text-nowrap datatable">
                                     <tbody>
                                         <tr>
-                                            <td>Name</td>
-                                            <td>{{ $product->name }}</td>
+                                            <td>Company Name</td>
+                                            <td>{{ $product->company_name }}</td>
+                                        </tr>
+{{--                                        <tr>--}}
+{{--                                            <td>uuid</td>--}}
+{{--                                            <td>{{ $product->slug }}</td>--}}
+{{--                                        </tr>--}}
+                                        <tr>
+                                            <td><span class="text-secondary">Challan No</span></td>
+                                            <td>{{ $product->challan_no }}</td>
                                         </tr>
                                         <tr>
-                                            <td>Slug</td>
-                                            <td>{{ $product->slug }}</td>
+                                            <td>QR Code</td>
+                                            <td>{!! $qrcode !!}</td>
                                         </tr>
                                         <tr>
-                                            <td><span class="text-secondary">Code</span></td>
-                                            <td>{{ $product->code }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Barcode</td>
-                                            <td>{!! $barcode !!}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Category</td>
+                                            <td>Type</td>
                                             <td>
-                                                <a href="{{ route('categories.show', $product->category) }}"
-                                                    class="badge bg-blue-lt">
-                                                    {{ $product->category->name }}
-                                                </a>
+{{--                                                <a href="{{ route('categories.show', $product->category) }}"--}}
+{{--                                                    class="badge bg-blue-lt">--}}
+{{--                                                    {{ $product->category->name }}--}}
+{{--                                                </a>--}}
+                                                {{ $product->type }}
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Unit</td>
+                                            <td>APM Challan No</td>
                                             <td>
-                                                <a href="{{ route('units.show', $product->unit) }}"
-                                                    class="badge bg-blue-lt">
-                                                    {{ $product->unit->short_code }}
-                                                </a>
+{{--                                                <a href="{{ route('units.show', $product->unit) }}"--}}
+{{--                                                    class="badge bg-blue-lt">--}}
+{{--                                                    {{ $product->unit->short_code }}--}}
+{{--                                                </a>--}}
+                                                {{ $product->apm_challan_no }}
                                             </td>
                                         </tr>
 
@@ -115,38 +117,37 @@
                                             <td>{{ $product->quantity }}</td>
                                         </tr>
                                         <tr>
-                                            <td>Quantity Alert</td>
+                                            <td>Cutting Size</td>
                                             <td>
-                                                <span class="badge bg-red-lt">
-                                                    {{ $product->quantity_alert }}
-                                                </span>
+{{--                                                <span class="badge bg-red-lt">--}}
+{{--                                                    {{ $product->quantity_alert }}--}}
+{{--                                                </span>--}}
+                                                {{ $product->cutting_size }}
                                             </td>
                                         </tr>
 
                                         <tr>
-                                            <td>Buying Price</td>
-                                            <td>{{ $product->buying_price }}</td>
+                                            <td>Cutting Weight</td>
+                                            <td>{{ $product->cutting_weight }}</td>
                                         </tr>
                                         <tr>
-                                            <td>Selling Price</td>
-                                            <td>{{ $product->selling_price }}</td>
+                                            <td>Order No</td>
+                                            <td>{{ $product->order_no }}</td>
                                         </tr>
                                         <tr>
-                                            <td>Tax</td>
+                                            <td>Order Size</td>
                                             <td>
-                                                <span class="badge bg-red-lt">
-                                                    {{ $product->tax }} %
-                                                </span>
+                                                {{ $product->order_size }}
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>Tax Type</td>
-                                            <td>{{ $product->tax_type->label() }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>{{ __('Notes') }}</td>
-                                            <td>{{ $product->notes }}</td>
-                                        </tr>
+{{--                                        <tr>--}}
+{{--                                            <td>Tax Type</td>--}}
+{{--                                            <td>{{ $product->tax_type->label() }}</td>--}}
+{{--                                        </tr>--}}
+{{--                                        <tr>--}}
+{{--                                            <td>{{ __('Notes') }}</td>--}}
+{{--                                            <td>{{ $product->notes }}</td>--}}
+{{--                                        </tr>--}}
                                     </tbody>
                                 </table>
                             </div>

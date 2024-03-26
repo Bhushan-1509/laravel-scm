@@ -11,8 +11,8 @@ class CustomerController extends Controller
 {
     public function index()
     {
-        $customers = Customer::where('user_id', auth()->id())->count();
-
+//        $customers = Customer::where('user_id', auth()->id())->count();
+        $customers = Customer::all()->count();
         return view('customers.index', [
             'customers' => $customers
         ]);

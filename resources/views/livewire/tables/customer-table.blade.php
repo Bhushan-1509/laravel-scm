@@ -48,19 +48,19 @@
                 </th>
                 <th scope="col" class="align-middle text-center">
                     <a wire:click.prevent="sortBy('name')" href="#" role="button">
-                        {{ __('Name') }}
+                        {{ __('Company Name') }}
                         @include('inclues._sort-icon', ['field' => 'name'])
                     </a>
                 </th>
                 <th scope="col" class="align-middle text-center">
                     <a wire:click.prevent="sortBy('email')" href="#" role="button">
-                        {{ __('Email') }}
+                        {{ __('GST No') }}
                         @include('inclues._sort-icon', ['field' => 'email'])
                     </a>
                 </th>
                 <th scope="col" class="align-middle text-center">
                     <a wire:click.prevent="sortBy('created_at')" href="#" role="button">
-                        {{ __('Created at') }}
+                        {{ __('Address') }}
                         @include('inclues._sort-icon', ['field' => 'Created_at'])
                     </a>
                 </th>
@@ -76,20 +76,20 @@
                         {{ $loop->index }}
                     </td>
                     <td class="align-middle text-center">
-                        {{ $customer->name }}
+                        {{ $customer->company_name }}
                     </td>
                     <td class="align-middle text-center">
-                        {{ $customer->email }}
+                        {{ $customer->gst_no }}
                     </td>
                     <td class="align-middle text-center">
-                        {{ $customer->created_at->diffForHumans() }}
+                        {{ $customer->address }}
                     </td>
                     <td class="align-middle text-center">
                         <x-button.show class="btn-icon" route="{{ route('customers.show', $customer->uuid) }}"/>
                         <x-button.edit class="btn-icon" route="{{ route('customers.edit', $customer->uuid) }}"/>
-                        <x-button.delete 
-                            class="btn-icon" 
-                            route="{{ route('customers.destroy', $customer->uuid) }}" 
+                        <x-button.delete
+                            class="btn-icon"
+                            route="{{ route('customers.destroy', $customer->uuid) }}"
                             onclick="return confirm('Are you sure to remove {{ $customer->name }} ?')"
                         />
                     </td>

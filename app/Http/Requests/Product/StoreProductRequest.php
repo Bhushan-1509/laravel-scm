@@ -24,17 +24,29 @@ class StoreProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'product_image'     => 'image|file|max:2048',
-            'name'              => 'required|string',
-            'category_id'       => 'required|integer',
-            'unit_id'           => 'required|integer',
-            'quantity'          => 'required|integer',
-            'buying_price'      => 'required|integer',
-            'selling_price'     => 'required|integer',
-            'quantity_alert'    => 'required|integer',
-            'tax'               => 'nullable|numeric',
-            'tax_type'          => 'nullable|integer',
-            'notes'             => 'nullable|max:1000'
+//            'product_image'     => 'image|file|max:2048',
+//            'name'              => 'required|string',
+//            'category_id'       => 'required|integer',
+//            'unit_id'           => 'required|integer',
+//            'quantity'          => 'required|integer',
+//            'buying_price'      => 'required|integer',
+//            'selling_price'     => 'required|integer',
+//            'quantity_alert'    => 'required|integer',
+//            'tax'               => 'nullable|numeric',
+//            'tax_type'          => 'nullable|integer',
+//            'notes'             => 'nullable|max:1000'
+            'companyName' => 'required|string',
+            'challanNo' => 'required|alpha_dash:ascii',
+            'unit' => 'required',
+            'apmChallanNo' => 'required|alpha_dash:ascii',
+            'size' => 'required|numeric',
+            'quantity' => 'required|integer',
+            'for' => 'required|string',
+            'cuttingSize' => 'required|numeric',
+            'cuttingWeight' => 'required|numeric',
+            'orderNo' => 'required|integer',
+            'orderSize' => 'required|numeric',
+            'notes' => 'string'
         ];
     }
 

@@ -24,7 +24,7 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::where('user_id', auth()->id())->count();
+        $orders = Order::all()->count();
 
         return view('orders.index', [
             'orders' => $orders
@@ -33,17 +33,18 @@ class OrderController extends Controller
 
     public function create()
     {
-        $products = Product::where('user_id', auth()->id())->with(['category', 'unit'])->get();
-
-        $customers = Customer::where('user_id', auth()->id())->get(['id', 'name']);
+//        $products = Product::where('user_id', auth()->id())->with(['category', 'unit'])->get();
+//
+//        $customers = Customer::where('user_id', auth()->id())->get(['id', 'name']);
 
         $carts = Cart::content();
 
-        return view('orders.create', [
-            'products' => $products,
-            'customers' => $customers,
-            'carts' => $carts,
-        ]);
+//        return view('orders.create', [
+//            'products' => $products,
+//            'customers' => $customers,
+//            'carts' => $carts,
+//        ]);
+        return view('orders.create');
     }
 
     public function store(OrderStoreRequest $request)

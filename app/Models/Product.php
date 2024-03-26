@@ -15,29 +15,24 @@ class Product extends Model
     protected $guarded = ['id'];
 
     public $fillable = [
-        'name',
-        'slug',
-        'code',
+        'company_name',
+        'challan_no',
+        'type',
+        'apm_challan_no',
+        'size',
         'quantity',
-        'quantity_alert',
-        'buying_price',
-        'selling_price',
-        'tax',
-        'tax_type',
-        'notes',
-        'product_image',
-        'category_id',
-        'unit_id',
-        'created_at',
-        'updated_at',
-        "user_id",
-        "uuid"
+        'for',
+        'cutting_size',
+        'cutting_weight',
+        'order_no',
+        'order_size',
+        'notes'
     ];
 
     protected $casts = [
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
-        'tax_type' => TaxType::class
+//        'tax_type' => TaxType::class
     ];
 
     public function getRouteKeyName(): string

@@ -64,10 +64,19 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('/units', UnitController::class);
 
     // Route Products
-    Route::get('products/import/', [ProductImportController::class, 'create'])->name('products.import.view');
-    Route::post('products/import/', [ProductImportController::class, 'store'])->name('products.import.store');
-    Route::get('products/export/', [ProductExportController::class, 'create'])->name('products.export.store');
-    Route::resource('/products', ProductController::class);
+    Route::get('material/import/', [ProductImportController::class, 'create'])->name('products.import.view');
+    Route::post('material/import/', [ProductImportController::class, 'store'])->name('products.import.store');
+    Route::get('material/export/', [ProductExportController::class, 'create'])->name('products.export.store');
+    Route::resource('/material', ProductController::class)->names([
+        'index' => 'products.index',
+        'create' => 'products.create',
+        'store' => 'products.store',
+        'show' => 'products.show',
+        'edit' => 'products.edit',
+        'update' => 'products.update',
+        'destroy' => 'products.destroy',
+
+    ]);
 
     // Route POS
     Route::get('/pos', [PosController::class, 'index'])->name('pos.index');
@@ -121,11 +130,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 
     // Route items
-    Route::get('items/', function(){
-        return view('items.index', ['items' => null]);
-    });
+//    Route::get('items/', function(){
+//        return view('items.index', ['items' => null]);
+//    });
+//
+//    Route::get('items/create', function(){
+//        return view('items.create', ['items' => null]);
+//    });
 
-
+    Route::resource('items/', \App\Http\Controllers\Item\ItemController::class);
     // Route Quotations
     // Route::get('/quotations/{quotation}/edit', [QuotationController::class, 'edit'])->name('quotations.edit');
     Route::post('/quotations/complete/{quotation}', [QuotationController::class, 'update'])->name('quotations.update');

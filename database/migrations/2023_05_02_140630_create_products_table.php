@@ -12,30 +12,22 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->id();
+            $table->id()->autoIncrement();
             $table->uuid();
-            $table->foreignId("user_id")->constrained()->onDelete('cascade');
-            $table->string('name');
-            $table->string('slug');
-            $table->string('code');
+//            $table->foreignId("user_id")->constrained()->onDelete('cascade');
+            $table->string('company_name');
+            $table->string('challan_no');
+            $table->string('type');
             //$table->string('product_barcode_symbology')->nullable();
+            $table->string('apm_challan_no');
+            $table->integer('size');
             $table->integer('quantity');
-            $table->integer('buying_price')->comment('Buying Price');
-            $table->integer('selling_price')->comment('Selling Price');
-            $table->integer('quantity_alert');
-            $table->integer('tax')->nullable();
-            $table->tinyInteger('tax_type')->nullable();
-            $table->text('notes')->nullable();
-
-            $table->string('product_image')->nullable();
-
-            $table->foreignIdFor(\App\Models\Category::class)
-                ->nullable()
-                ->constrained()
-                ->nullOnDelete();
-
-            $table->foreignIdFor(\App\Models\Unit::class)->constrained()
-                ->cascadeOnDelete();
+            $table->string('for');
+            $table->decimal('cutting_size');
+            $table->decimal('cutting_weight');
+            $table->integer('order_no');
+            $table->integer('order_size')->nullable();
+            $table->text('notes');
             $table->timestamps();
         });
     }

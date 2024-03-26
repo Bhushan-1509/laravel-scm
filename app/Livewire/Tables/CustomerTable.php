@@ -3,6 +3,7 @@
 namespace App\Livewire\Tables;
 
 use App\Models\Customer;
+use App\Models\Product;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -31,12 +32,17 @@ class CustomerTable extends Component
 
     public function render()
     {
-        return view('livewire.tables.customer-table', [
-            'customers' => Customer::where("user_id", auth()->id())
-                ->with('orders', 'quotations')
-                ->search($this->search)
-                ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
-                ->paginate($this->perPage)
-        ]);
+        $customers = Customer::query()
+            ->where('company_name', 'like', '%' . trim($this->search) . '%')
+            ->orWhere('gst_no', 'like', '%' . trim($this->search) . '%')
+            ->paginate($this->perPage);
+//        return view('livewire.tables.customer-table', [
+//            'customers' => Customer::where("user_id", auth()->id())
+//                ->with('orders', 'quotations')
+//                ->search($this->search)
+//                ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+//                ->paginate($this->perPage)
+//        ]);
+        return view('livewire.tables.customer-table', ['customers' => $customers]);
     }
 }
