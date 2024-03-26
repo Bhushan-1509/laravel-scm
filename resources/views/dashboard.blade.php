@@ -184,10 +184,10 @@
                                         </div>
                                         <div class="col">
                                             <div class="font-weight-medium">
-                                                {{ $products }} Products
+                                                {{ $products }} Raw Materials
                                             </div>
                                             <div class="text-muted">
-                                                {{ $categories }} categories
+                                                {{ $categories }} entries
                                             </div>
                                         </div>
                                     </div>
@@ -250,7 +250,7 @@
                                                 {{ $purchases }} Purchases
                                             </div>
                                             <div class="text-muted">
-                                                {{ $todayPurchases }} today
+                                                {{ $todayPurchases }} till now
                                             </div>
                                         </div>
                                     </div>
@@ -264,25 +264,26 @@
                                         <div class="col-auto">
                                             <span
                                                 class="bg-facebook text-white avatar"><!-- Download SVG icon from http://tabler-icons.io/i/brand-facebook -->
-                                                <svg xmlns="http://www.w3.org/2000/svg"
-                                                    class="icon icon-tabler icon-tabler-files" width="24" height="24"
-                                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                                    fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                    <path d="M15 3v4a1 1 0 0 0 1 1h4" />
-                                                    <path
-                                                        d="M18 17h-7a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h4l5 5v7a2 2 0 0 1 -2 2z" />
-                                                    <path
-                                                        d="M16 17v2a2 2 0 0 1 -2 2h-7a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h2" />
-                                                </svg>
+{{--                                                <svg xmlns="http://www.w3.org/2000/svg"--}}
+{{--                                                    class="icon icon-tabler icon-tabler-files" width="24" height="24"--}}
+{{--                                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"--}}
+{{--                                                    fill="none" stroke-linecap="round" stroke-linejoin="round">--}}
+{{--                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />--}}
+{{--                                                    <path d="M15 3v4a1 1 0 0 0 1 1h4" />--}}
+{{--                                                    <path--}}
+{{--                                                        d="M18 17h-7a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h4l5 5v7a2 2 0 0 1 -2 2z" />--}}
+{{--                                                    <path--}}
+{{--                                                        d="M16 17v2a2 2 0 0 1 -2 2h-7a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h2" />--}}
+{{--                                                </svg>--}}
+                                                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-building-factory-2"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 21h18" /><path d="M5 21v-12l5 4v-4l5 4h4" /><path d="M19 21v-8l-1.436 -9.574a.5 .5 0 0 0 -.495 -.426h-1.145a.5 .5 0 0 0 -.494 .418l-1.43 8.582" /><path d="M9 17h1" /><path d="M14 17h1" /></svg>
                                             </span>
                                         </div>
                                         <div class="col">
                                             <div class="font-weight-medium">
-                                                {{ $quotations }} Quotations
+                                                {{ $quotations }} Companies
                                             </div>
                                             <div class="text-muted">
-                                                {{ $todayQuotations }} today
+                                                {{ $todayQuotations }} till now
                                             </div>
                                         </div>
                                     </div>

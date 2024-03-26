@@ -119,6 +119,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/purchases/update/{purchase}', [PurchaseController::class, 'update'])->name('purchases.update');
     Route::delete('/purchases/delete/{purchase}', [PurchaseController::class, 'destroy'])->name('purchases.delete');
 
+
+    // Route items
+    Route::get('items/', function(){
+        return view('items.index', ['items' => null]);
+    });
+
+
     // Route Quotations
     // Route::get('/quotations/{quotation}/edit', [QuotationController::class, 'edit'])->name('quotations.edit');
     Route::post('/quotations/complete/{quotation}', [QuotationController::class, 'update'])->name('quotations.update');
