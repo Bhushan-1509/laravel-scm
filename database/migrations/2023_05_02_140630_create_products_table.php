@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id()->autoIncrement();
-            $table->uuid();
-//            $table->foreignId("user_id")->constrained()->onDelete('cascade');
+            $table->uuid()->nullable();
             $table->string('company_name');
             $table->string('challan_no');
             $table->string('type');
@@ -27,6 +26,7 @@ return new class extends Migration
             $table->decimal('cutting_weight');
             $table->integer('order_no');
             $table->integer('order_size')->nullable();
+            $table->string("stage")->default("Stage 1");
             $table->text('notes');
             $table->timestamps();
         });

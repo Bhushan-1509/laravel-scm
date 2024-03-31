@@ -18,6 +18,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'username',
         'email',
+        'google2fa_secret',
         'password',
         "store_name",
         "store_address",
@@ -34,6 +35,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
         'created_at' => 'datetime',
         'updated_at' => 'datetime'
+    ];
+    protected $attributes = [
+        'google2fa_secret' => null,
     ];
 
     public function scopeSearch($query, $value): void

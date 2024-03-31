@@ -15,6 +15,7 @@ class Product extends Model
     protected $guarded = ['id'];
 
     public $fillable = [
+        'uuid',
         'company_name',
         'challan_no',
         'type',

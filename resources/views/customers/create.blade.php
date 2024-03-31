@@ -116,8 +116,17 @@
 
 
                                     <div class="col-sm-6 col-md-6">
-                                        <x-input label="State" name="state" />
-                                        @error('state')
+                                        <label for="address" class="form-label required">
+                                            States
+                                        </label>
+
+                                        <select class="form-select @error('bank_name') is-invalid @enderror"
+                                                id="bank_name" name="states">
+                                            @foreach($states as $state)
+                                                <option value="{{ $state->state_name }}">{{ $state->state_name }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('states')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>
@@ -125,8 +134,8 @@
                                     </div>
 
                                     <div class="col-sm-6 col-md-6">
-                                        <x-input label="GST No" name="gst_no" placeholder="Example: 29ABCDE1234F1Z5"/>
-                                        @error('gst_no')
+                                        <x-input label="GST No" name="gstNo" placeholder="Example: 29ABCDE1234F1Z5"/>
+                                        @error('gstNo')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>
@@ -138,7 +147,7 @@
                                                 Company in sez
                                             </label>
 
-                                            <select class="form-select form-control-solid @error('customer_id') is-invalid @enderror" id="companyInSez" name="customyInSez">
+                                            <select class="form-select form-control-solid @error('customer_id') is-invalid @enderror" id="companyInSez" name="companyInSez">
                                                 <option value="yes" >Yes</option>
                                                 <option value="no">No</option>
                                             </select>
@@ -168,10 +177,20 @@
                                     </div>
 
                                     <div class="col-sm-6 col-md-6">
-                                        <x-input label="Distance from andheri" name="andheri" placeholder="Kms"/>
+                                        <x-input label="Distance from andheri" name="distanceFromAndheri" placeholder="Kms"/>
+                                        @error('distanceFromAndheri')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
                                     </div>
                                     <div class="col-sm-6 col-md-6">
-                                        <x-input label="Distance from vasai" name="vasai" placeholder="Kms"/>
+                                        <x-input label="Distance from vasai" name="distanceFromVasai" placeholder="Kms"/>
+                                        @error('distanceFromVasai')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
                                     </div>
                                 </div>
 
@@ -190,6 +209,17 @@
                 </div>
             </form>
         </div>
+{{--        <div class="container">--}}
+{{--            @if ($errors->any())--}}
+{{--                <div class="alert alert-danger">--}}
+{{--                    <ul>--}}
+{{--                        @foreach ($errors->all() as $error)--}}
+{{--                            <li>{{ $error }}</li>--}}
+{{--                        @endforeach--}}
+{{--                    </ul>--}}
+{{--                </div>--}}
+{{--            @endif--}}
+{{--        </div>--}}
     </div>
 </div>
 @endsection

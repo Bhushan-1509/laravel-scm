@@ -184,10 +184,10 @@
                                         </div>
                                         <div class="col">
                                             <div class="font-weight-medium">
-                                                0 Raw Materials
+                                                {{ $rawMaterials }} Raw Materials
                                             </div>
                                             <div class="text-muted">
-                                                0 entries
+                                                {{ $rawMaterials }} entries
                                             </div>
                                         </div>
                                     </div>
@@ -215,10 +215,10 @@
                                         </div>
                                         <div class="col">
                                             <div class="font-weight-medium">
-                                                0 Orders
+                                                {{ $orders }} Orders
                                             </div>
                                             <div class="text-muted">
-                                                0 shipped
+                                                {{ $orders }} shipped
                                             </div>
                                         </div>
                                     </div>
@@ -247,10 +247,10 @@
                                         </div>
                                         <div class="col">
                                             <div class="font-weight-medium">
-                                                0 Purchases
+                                                {{ $purchases }} Purchases
                                             </div>
                                             <div class="text-muted">
-                                                0 till now
+                                                {{ $purchases }} till now
                                             </div>
                                         </div>
                                     </div>
@@ -280,10 +280,10 @@
                                         </div>
                                         <div class="col">
                                             <div class="font-weight-medium">
-                                                0 Companies
+                                                {{ $companies }} Companies
                                             </div>
                                             <div class="text-muted">
-                                               0 till now
+                                               {{ $companies }} till now
                                             </div>
                                         </div>
                                     </div>

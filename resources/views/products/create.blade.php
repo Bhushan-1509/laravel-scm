@@ -66,6 +66,7 @@
                                                  value="{{ old('name') }}"
                                                  required="true"
                                         />
+
                                     </div>
 
                                     <div class="col-sm-6 col-md-6">

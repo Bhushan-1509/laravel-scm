@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboards;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Purchase;
@@ -38,6 +39,15 @@ class DashboardController extends Controller
 //            'categories' => $categories,
 //            'quotations' => $quotations
 //        ]);
-        return view('dashboard');
+        $rawMaterials = Product::all()->count();
+        $orders = Product::all()->count();
+        $purchase = Purchase::all()->count();
+        $companies = Customer::all()->count();
+        return view('dashboard',[
+            'rawMaterials' => $rawMaterials,
+            'orders' => $orders,
+            'purchases' => $purchase,
+            'companies' => $companies
+        ]);
     }
 }

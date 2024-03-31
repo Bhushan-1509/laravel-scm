@@ -6,7 +6,7 @@
             <div class="row g-2 align-items-center mb-3">
                 <div class="col">
                     <h2 class="page-title">
-                        {{ __('Edit Product') }}
+                        {{ __('Edit Raw Material') }}
                     </h2>
                 </div>
             </div>

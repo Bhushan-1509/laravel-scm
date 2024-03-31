@@ -23,32 +23,32 @@
                     @csrf
                     @method('put')
                     <div class="row">
-                        <div class="col-lg-4">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h3 class="card-title">
-                                        {{ __('Profile Image') }}
-                                    </h3>
+{{--                        <div class="col-lg-4">--}}
+{{--                            <div class="card">--}}
+{{--                                <div class="card-body">--}}
+{{--                                    <h3 class="card-title">--}}
+{{--                                        {{ __('Profile Image') }}--}}
+{{--                                    </h3>--}}
 
-                                    <img class="img-account-profile mb-2"
-                                        src="{{ $customer->photo ? asset('storage/' . $customer->photo) : asset('assets/img/demo/user-placeholder.svg') }}"
-                                        alt="" id="image-preview" />
+{{--                                    <img class="img-account-profile mb-2"--}}
+{{--                                        src="{{ $customer->photo ? asset('storage/' . $customer->photo) : asset('assets/img/demo/user-placeholder.svg') }}"--}}
+{{--                                        alt="" id="image-preview" />--}}
 
-                                    <div class="small font-italic text-muted mb-2">JPG or PNG no larger than 2 MB</div>
+{{--                                    <div class="small font-italic text-muted mb-2">JPG or PNG no larger than 2 MB</div>--}}
 
-                                    <input class="form-control @error('photo') is-invalid @enderror" type="file"
-                                        id="image" name="photo" accept="image/*" onchange="previewImage();">
+{{--                                    <input class="form-control @error('photo') is-invalid @enderror" type="file"--}}
+{{--                                        id="image" name="photo" accept="image/*" onchange="previewImage();">--}}
 
-                                    @error('photo')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
+{{--                                    @error('photo')--}}
+{{--                                        <div class="invalid-feedback">--}}
+{{--                                            {{ $message }}--}}
+{{--                                        </div>--}}
+{{--                                    @enderror--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
-                        <div class="col-lg-8">
+                        <div class="col-lg-10">
                             <div class="card">
                                 <div class="card-body">
                                     <h3 class="card-title">
@@ -57,40 +57,27 @@
 
                                     <div class="row row-cards">
                                         <div class="col-md-12">
-                                            <x-input name="name" :value="old('name', $customer->name)" :required="true" />
+                                            <x-input name="companyName" label="Company Name" :value="old('companyName', $customer->company_name)" :required="true" />
 
-                                            <x-input label="Email address" name="email" :value="old('email', $customer->email)"
+                                            <x-input label="GST No" name="gstNo" :value="old('gstNo', $customer->gst_no)"
                                                 :required="true" />
                                         </div>
 
                                         <div class="col-sm-6 col-md-6">
-                                            <x-input label="Phone number" name="phone" :value="old('phone', $customer->phone)"
+                                            <x-input label="Pincode" name="pincode" :value="old('phone', $customer->pincode)"
                                                 :required="true" />
                                         </div>
 
                                         <div class="col-sm-6 col-md-6">
                                             <label for="bank_name" class="form-label">
-                                                {{ __('Bank Name') }}
+                                                {{ __('State') }}
                                             </label>
 
                                             <select class="form-select @error('bank_name') is-invalid @enderror"
-                                                id="bank_name" name="bank_name">
-                                                <option selected="" disabled>Select a bank:</option>
-                                                <option value="BRI"
-                                                    @if (old('bank_name', $customer->bank_name) == 'BRI') selected="selected" @endif>BRI
-                                                </option>
-                                                <option value="BNI"
-                                                    @if (old('bank_name', $customer->bank_name) == 'BNI') selected="selected" @endif>BNI
-                                                </option>
-                                                <option value="BCA"
-                                                    @if (old('bank_name', $customer->bank_name) == 'BCA') selected="selected" @endif>BCA
-                                                </option>
-                                                <option value="BSI"
-                                                    @if (old('bank_name', $customer->bank_name) == 'BSI') selected="selected" @endif>BSI
-                                                </option>
-                                                <option value="Mandiri"
-                                                    @if (old('bank_name', $customer->bank_name) == 'Mandiri') selected="selected" @endif>Mandiri
-                                                </option>
+                                                id="bank_name" name="states">
+                                                @foreach($states as $state)
+                                                    <option value="{{ $state->state_name }}">{{ $state->state_name }}</option>
+                                                @endforeach
                                             </select>
 
                                             @error('bank_name')
@@ -101,12 +88,11 @@
                                         </div>
 
                                         <div class="col-sm-6 col-md-6">
-                                            <x-input label="Account holder" name="account_holder" :value="old('account_holder', $customer->account_holder)"
-                                                :required="true" />
+                                            <x-input label="Distance from andheri in Km" name="distanceFromAndheri" :value="old('account_holder', $customer->distance_from_andheri)" required="true"/>
                                         </div>
 
                                         <div class="col-sm-6 col-md-6">
-                                            <x-input label="Account number" name="account_number" :value="old('account_number', $customer->account_number)"
+                                            <x-input label="Distance from vasai in Km" name="distanceFromVasai" :value="old('account_number', $customer->distance_from_vasai)"
                                                 :required="true" />
                                         </div>
 
@@ -141,6 +127,17 @@
                         </div>
                     </div>
                 </form>
+            </div>
+            <div class="conainer">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
             </div>
         </div>
     </div>

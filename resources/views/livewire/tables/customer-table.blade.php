@@ -73,7 +73,7 @@
             @forelse ($customers as $customer)
                 <tr>
                     <td class="align-middle text-center">
-                        {{ $loop->index }}
+                        {{ $loop->index + 1 }}
                     </td>
                     <td class="align-middle text-center">
                         {{ $customer->company_name }}
@@ -90,7 +90,7 @@
                         <x-button.delete
                             class="btn-icon"
                             route="{{ route('customers.destroy', $customer->uuid) }}"
-                            onclick="return confirm('Are you sure to remove {{ $customer->name }} ?')"
+                            onclick="return confirm('Are you sure to remove {{ $customer->company_name }} ?')"
                         />
                     </td>
                 </tr>

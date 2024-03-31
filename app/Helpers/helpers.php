@@ -33,7 +33,7 @@ if(!function_exists('generateQrCode')){
 }
 
 if(!function_exists('generatePincode')){
-    function generatePincode($length = 4) {
+    function generatePincode($length = 6) {
         $pin = "";
         for ($i = 0; $i < $length; $i++) {
             $pin .= mt_rand(0, 9);
@@ -45,11 +45,70 @@ if(!function_exists('generatePincode')){
 if(!function_exists('generateGstNo')){
     function generateGstNo() {
         $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $gst_number = 'GST';
-        for ($i = 0; $i < 10; $i++) {
+        $gst_number = '';
+        for ($i = 0; $i < 15; $i++) {
             $gst_number .= $characters[rand(0, strlen($characters) - 1)];
         }
         return $gst_number;
+    }
+}
+
+if(!function_exists('ifsc')){
+    function ifsc()
+    {
+        $IFSCPrefixes = ['SBIN', 'ICICI', 'IJKL', 'IBKL', 'KJSB'];
+        $prefix = randomElement($IFSCPrefixes);
+        $suffix = randomLetter() . randomLetter();
+        $number = randomNumber(6);
+
+        return strtoupper($prefix . $suffix . $number);
+    }
+
+}
+if(!function_exists('generateAccountNumber')){
+    function generateAccountNumber($length = 12)
+    {
+        // Define allowed characters for the account number
+        $characters = '0123456789';
+
+        // Get the length of the character list
+        $charactersLength = strlen($characters);
+
+        // Initialize the account number variable
+        $accountNumber = '';
+
+        // Generate a random account number
+        for ($i = 0; $i < $length; $i++) {
+            $accountNumber .= $characters[rand(0, $charactersLength - 1)];
+        }
+
+        return $accountNumber;
+    }
+
+}
+
+if(!function_exists('getRandomIndianBank')){
+    function getRandomIndianBank() {
+        // Array of Indian bank names
+        $indianBanks = array(
+            "State Bank of India",
+            "HDFC Bank",
+            "ICICI Bank",
+            "Axis Bank",
+            "Punjab National Bank",
+            "Bank of Baroda",
+            "Canara Bank",
+            "Union Bank of India",
+            "Bank of India",
+            "IndusInd Bank",
+            // Add more bank names as needed
+        );
+
+        // Get a random index within the range of the array
+        $randomIndex = array_rand($indianBanks);
+
+        // Return the randomly selected bank name
+        return $indianBanks[$randomIndex];
     }
 }
 

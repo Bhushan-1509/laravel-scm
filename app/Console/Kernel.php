@@ -2,11 +2,17 @@
 
 namespace App\Console;
 
+
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+//use PragmaRX\Google2FA\Vendor\Laravel\Commands\GenerateSecretKey;
+
 
 class Kernel extends ConsoleKernel
 {
+//    protected $commands = [
+//        \PragmaRX\Google2FA\Vendor\Laravel\Commands\GenerateSecretKey::class,
+//    ];
     /**
      * Define the application's command schedule.
      */
@@ -21,7 +27,6 @@ class Kernel extends ConsoleKernel
     protected function commands(): void
     {
         $this->load(__DIR__.'/Commands');
-
         require base_path('routes/console.php');
     }
 }

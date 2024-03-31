@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Tables;
 
+use App\Models\Customer;
 use App\Models\Supplier;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -33,12 +34,15 @@ class SupplierTable extends Component
 
     public function render()
     {
+//        $customers = Customer::query()
+//            ->where('company_name', 'like', '%' . trim($this->search) . '%')
+//            ->orWhere('gst_no', 'like', '%' . trim($this->search) . '%')
+//            ->paginate($this->perPage);
+        $suppliers = Supplier::query()->where('name', 'like', '%'. trim($this->search) . '%')
+            ->orWhere('email', 'like', '% ' . trim($this->search) . '%')
+            ->paginate($this->perPage);
         return view('livewire.tables.supplier-table', [
-            'suppliers' => Supplier::where("user_id", auth()->id())
-                ->with(['purchases'])
-                ->search($this->search)
-                ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
-                ->paginate($this->perPage)
+            'suppliers' =>$suppliers
         ]);
     }
 }

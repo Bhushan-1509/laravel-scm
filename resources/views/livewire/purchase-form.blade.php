@@ -24,13 +24,12 @@
                         <select wire:model.live="invoiceProducts.{{$index}}.product_id"
                                 id="invoiceProducts[{{$index}}][product_id]"
                                 class="form-control text-center @error('invoiceProducts.' . $index . '.product_id') is-invalid @enderror"
-                        >
+                                >
 
                             <option value="" class="text-center">-- choose product --</option>
-
                             @foreach ($allProducts as $product)
                                 <option value="{{ $product->id }}" class="text-center">
-                                    {{ $product->name }}
+                                    {{ $product->company_name }}
 {{--                                    (${{ number_format($product->buying_price, 2) }})--}}
                                 </option>
                             @endforeach
@@ -63,24 +62,32 @@
 
                 {{--- Unit Price ---}}
                 <td class="align-middle text-center">
-                    @if($invoiceProduct['is_saved'])
-                        {{ $unit_cost = number_format($invoiceProduct['product_price'], 2) }}
-
-                        <input type="hidden"
+                    @if(true)
+{{--                        {{ $unit_cost = number_format($invoiceProduct['product_price'], 2) }}--}}
+                        <input type="number"
                                name="invoiceProducts[{{$index}}][unitcost]"
-                               value="{{ $unit_cost }}"
-                        >
+                               value="" required="true">
+{{--                        <input type="hidden"--}}
+{{--                               name="invoiceProducts[{{$index}}][unitcost]"--}}
+{{--                               value=""--}}
+{{--                        >--}}
                     @endif
                 </td>
 
                 {{--- Total ---}}
                 <td class="align-middle text-center">
-                    {{ $product_total = $invoiceProduct['product_price'] * $invoiceProduct['quantity'] }}
-
-                    <input type="hidden"
+                    @php
+                        $product_total = null;
+                        $product_total = $invoiceProduct['product_price'] * $invoiceProduct['quantity'];
+                        @endphp
+                    <input type="number"
                            name="invoiceProducts[{{$index}}][total]"
                            value="{{ $product_total }}"
                     >
+{{--                    <input type="hidden"--}}
+{{--                           name="invoiceProducts[{{$index}}][total]"--}}
+{{--                           value="{{ $product_total }}"--}}
+{{--                    >--}}
                 </td>
 
                 <td class="align-middle text-center">
@@ -116,7 +123,7 @@
                 </th>
                 <td class="text-center">
 {{--                    ${{ number_format($subtotal, 2) }}--}}
-                    {{ Number::currency($subtotal, 'EUR') }}
+                      8
                 </td>
             </tr>
             <tr>
@@ -139,7 +146,7 @@
                     Total
                 </th>
                 <td class="text-center">
-                    {{ Number::currency($total, 'EUR') }}
+                    $
                     <input type="hidden" name="total_amount" value="{{ $total }}">
                 </td>
             </tr>

@@ -3,8 +3,8 @@
 @section('content')
     <div class="page-body">
         @if (!$items)
-            <x-empty title="No orders found" message="Try adjusting your search or filter to find what you're looking for."
-                     button_label="{{ __('Add your first Order') }}" button_route="{{ route('orders.create') }}" />
+            <x-empty title="No products found" message="Try adjusting your search or filter to find what you're looking for."
+                     button_label="{{ __('Add your first product') }}" button_route="{{ route('items.create') }}" />
         @else
             <div class="container-xl">
                 {{--        <x-card> --}}
@@ -70,7 +70,7 @@
                         <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
                     </div>
                 @endif
-                @livewire('tables.order-table')
+                @livewire('tables.items-table')
             </div>
         @endif
     </div>

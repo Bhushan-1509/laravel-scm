@@ -17,23 +17,23 @@
 <div class="page-body">
     <div class="container-xl">
         <div class="row row-cards">
-            <div class="col-lg-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h3 class="card-title">
-                            {{ __('Profile Image') }}
-                        </h3>
+{{--            <div class="col-lg-4">--}}
+{{--                <div class="card">--}}
+{{--                    <div class="card-body">--}}
+{{--                        <h3 class="card-title">--}}
+{{--                            {{ __('Profile Image') }}--}}
+{{--                        </h3>--}}
 
-                        <img id="image-preview"
-                             class="img-account-profile mb-2"
-                             src="{{ $supplier->photo ? asset('storage/' . $supplier->photo) : asset('assets/img/demo/user-placeholder.svg') }}"
-                             alt=""
-                        >
-                    </div>
-                </div>
-            </div>
+{{--                        <img id="image-preview"--}}
+{{--                             class="img-account-profile mb-2"--}}
+{{--                             src="{{ $supplier->photo ? asset('storage/' . $supplier->photo) : asset('assets/img/demo/user-placeholder.svg') }}"--}}
+{{--                             alt=""--}}
+{{--                        >--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
 
-            <div class="col-lg-8">
+            <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
                         <div>
@@ -71,7 +71,7 @@
                                 </tr>
                                 <tr>
                                     <td>Type</td>
-                                    <td>{{ $supplier->type->label() }}</td>
+                                    <td>Tier 3</td>
                                 </tr>
                                 <tr>
                                     <td>Account holder</td>
@@ -83,7 +83,7 @@
                                 </tr>
                                 <tr>
                                     <td>Bank name</td>
-                                    <td>{{ $supplier->bank_name }}</td>
+                                    <td>{{ $supplier->ifsc }}</td>
                                 </tr>
                             </tbody>
                         </table>

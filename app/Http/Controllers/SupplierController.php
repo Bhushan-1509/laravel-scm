@@ -11,8 +11,7 @@ class SupplierController extends Controller
 {
     public function index()
     {
-        $suppliers = Supplier::where("user_id", auth()->id())->count();
-
+        $suppliers = Supplier::all()->count();
         return view('suppliers.index', [
             'suppliers' => $suppliers
         ]);
@@ -31,9 +30,7 @@ class SupplierController extends Controller
         }
 
         Supplier::create([
-            "user_id" => auth()->id(),
             "uuid" => Str::uuid(),
-            'photo' => $image,
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
@@ -41,8 +38,8 @@ class SupplierController extends Controller
             'type' => $request->type,
             'account_holder' => $request->account_holder,
             'account_number' => $request->account_number,
-            'bank_name' => $request->bank_name,
-            'address' => $request->address,
+            'ifsc' => $request->ifsc,
+            'address' => $request->address
         ]);
 
         return redirect()
@@ -75,27 +72,25 @@ class SupplierController extends Controller
         /**
          * Handle upload image with Storage.
          */
-        $image = $supplier->photo;
-        if ($request->hasFile('photo')) {
-
-            // Delete Old Photo
-            if ($supplier->photo) {
-                unlink(public_path('storage/') . $supplier->photo);
-            }
-
-            $image = $request->file('photo')->store("supliers", "public");
-        }
-
+//        $image = $supplier->photo;
+//        if ($request->hasFile('photo')) {
+//
+//            // Delete Old Photo
+//            if ($supplier->photo) {
+//                unlink(public_path('storage/') . $supplier->photo);
+//            }
+//
+//            $image = $request->file('photo')->store("supliers", "public");
+//        }
         $supplier->update([
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
-            'photo' => $image,
             'shopname' => $request->shopname,
             'type' => $request->type,
             'account_holder' => $request->account_holder,
             'account_number' => $request->account_number,
-            'bank_name' => $request->bank_name,
+            'ifsc' => $request->ifsc,
             'address' => $request->address,
         ]);
 

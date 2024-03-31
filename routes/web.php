@@ -18,6 +18,7 @@ use App\Http\Controllers\Quotation\QuotationController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\UserController;
+use App\Models\Item;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,10 +43,12 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::get('/2fa', [Auth\TwoFactorController::class, 'show'])->name('2fa');
+Route::post('/2fa', [Auth\TwoFactorController::class,'verify'])->name('2fa.verify');
+
+Route::middleware(['auth', '2fa'])->group(function () {
 
     Route::get('dashboard/', [DashboardController::class, 'index'])->name('dashboard');
-
     // User Management
     // Route::resource('/users', UserController::class); //->except(['show']);
     Route::put('/user/change-password/{username}', [UserController::class, 'updatePassword'])->name('users.updatePassword');
@@ -129,16 +132,24 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/purchases/delete/{purchase}', [PurchaseController::class, 'destroy'])->name('purchases.delete');
 
 
-    // Route items
+//     Route items
 //    Route::get('items/', function(){
-//        return view('items.index', ['items' => null]);
-//    });
+//        return view('items.index', ['items' => Item::all()->count()]);
+//    })->name('items.index');
 //
 //    Route::get('items/create', function(){
 //        return view('items.create', ['items' => null]);
-//    });
+//    })->name('items.create');
 
-    Route::resource('items/', \App\Http\Controllers\Item\ItemController::class);
+    Route::resource('/items', \App\Http\Controllers\Item\ItemController::class)->names([
+        'index' => 'items.index',
+        'create' => 'items.create',
+        'store' => 'items.store',
+        'show' => 'items.show',
+        'edit' => 'items.edit',
+        'update' => 'items.update',
+        'destroy' => 'items.destroy',
+    ]);
     // Route Quotations
     // Route::get('/quotations/{quotation}/edit', [QuotationController::class, 'edit'])->name('quotations.edit');
     Route::post('/quotations/complete/{quotation}', [QuotationController::class, 'update'])->name('quotations.update');

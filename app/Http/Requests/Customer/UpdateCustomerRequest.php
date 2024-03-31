@@ -61,14 +61,11 @@ class UpdateCustomerRequest extends FormRequest
         return [
             'companyName' => 'required|string',
             'address' => 'required|string',
-            'city' => 'required|string',
             'pincode' => 'required',
-            'state' => 'required|string',
-            'gst_no' => 'required|string|max:15',
-            'companyInSez'=> 'required',
-            'companyType' => 'required',
-            'andheri' => 'required|string',
-            'vasai' => 'required|string'
+            'states' => 'required|string',
+            'gstNo' => 'required|string|max:15',
+            'distanceFromAndheri' => 'required|string',
+            'distanceFromVasai' => 'required|string'
         ];
     }
 }

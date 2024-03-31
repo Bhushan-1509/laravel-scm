@@ -9,28 +9,28 @@
                 @csrf
                 @method('put')
                 <div class="row">
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h3 class="card-title">
-                                    {{ __('Profile Image') }}
-                                </h3>
+{{--                    <div class="col-lg-4">--}}
+{{--                        <div class="card">--}}
+{{--                            <div class="card-body">--}}
+{{--                                <h3 class="card-title">--}}
+{{--                                    {{ __('Profile Image') }}--}}
+{{--                                </h3>--}}
 
-                                <img class="img-account-profile mb-2" src="{{ $supplier->photo ? asset('storage/'.$supplier->photo) : asset('assets/img/demo/user-placeholder.svg') }}" alt="" id="image-preview" />
-                                <!-- Profile picture help block -->
-                                <div class="small font-italic text-muted mb-2">JPG or PNG no larger than 1 MB</div>
-                                <!-- Profile picture input -->
-                                <input class="form-control form-control-solid mb-2 @error('photo') is-invalid @enderror" type="file"  id="image" name="photo" accept="image/*" onchange="previewImage();">
-                                @error('photo')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
-                        </div>
-                    </div>
+{{--                                <img class="img-account-profile mb-2" src="{{ $supplier->photo ? asset('storage/'.$supplier->photo) : asset('assets/img/demo/user-placeholder.svg') }}" alt="" id="image-preview" />--}}
+{{--                                <!-- Profile picture help block -->--}}
+{{--                                <div class="small font-italic text-muted mb-2">JPG or PNG no larger than 1 MB</div>--}}
+{{--                                <!-- Profile picture input -->--}}
+{{--                                <input class="form-control form-control-solid mb-2 @error('photo') is-invalid @enderror" type="file"  id="image" name="photo" accept="image/*" onchange="previewImage();">--}}
+{{--                                @error('photo')--}}
+{{--                                <div class="invalid-feedback">--}}
+{{--                                    {{ $message }}--}}
+{{--                                </div>--}}
+{{--                                @enderror--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
 
-                    <div class="col-lg-8">
+                    <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
                                 <div>
@@ -58,11 +58,14 @@
                                         </label>
 
                                         <select class="form-select @error('type') is-invalid @enderror" id="type" name="type">
-                                            @foreach(\App\Enums\SupplierType::cases() as $supplierType)
-                                            <option value="{{ $supplierType->value }}" @selected(old('type', $supplier->type) == $supplierType->value)>
-                                                {{ $supplierType->label() }}
-                                            </option>
-                                            @endforeach
+{{--                                            @foreach(\App\Enums\SupplierType::cases() as $supplierType)--}}
+{{--                                            <option value="{{ $supplierType->value }}" @selected(old('type', $supplier->type) == $supplierType->value)>--}}
+{{--                                                {{ $supplierType->label() }}--}}
+{{--                                            </option>--}}
+{{--                                            @endforeach--}}
+                                            <option value="wholesaler">Wholesaler</option>
+                                            <option value="producer">Producer</option>
+                                            <option value="distributor">Distributor</option>
                                         </select>
 
                                         @error('type')
@@ -73,18 +76,16 @@
                                     </div>
 
                                     <div class="col-sm-6 col-md-6">
-                                        <label for="bank_name" class="form-label required">
-                                            Bank Name
-                                        </label>
 
-                                        <select class="form-select @error('bank_name') is-invalid @enderror" id="bank_name" name="bank_name">
-                                            <option selected="" disabled="">Select a bank:</option>
-                                            <option value="BRI" @if(old('bank_name', $supplier->bank_name) == 'BRI')selected="selected"@endif>BRI</option>
-                                            <option value="BNI" @if(old('bank_name', $supplier->bank_name) == 'BNI')selected="selected"@endif>BNI</option>
-                                            <option value="BCA" @if(old('bank_name', $supplier->bank_name) == 'BCA')selected="selected"@endif>BCA</option>
-                                            <option value="BSI" @if(old('bank_name', $supplier->bank_name) == 'BSI')selected="selected"@endif>BSI</option>
-                                            <option value="Mandiri" @if(old('bank_name', $supplier->bank_name) == 'Mandiri')selected="selected"@endif>Mandiri</option>
-                                        </select>
+{{--                                        <select class="form-select @error('bank_name') is-invalid @enderror" id="bank_name" name="bank_name">--}}
+{{--                                            <option selected="" disabled="">Select a bank:</option>--}}
+{{--                                            <option value="BRI" @if(old('bank_name', $supplier->bank_name) == 'BRI')selected="selected"@endif>BRI</option>--}}
+{{--                                            <option value="BNI" @if(old('bank_name', $supplier->bank_name) == 'BNI')selected="selected"@endif>BNI</option>--}}
+{{--                                            <option value="BCA" @if(old('bank_name', $supplier->bank_name) == 'BCA')selected="selected"@endif>BCA</option>--}}
+{{--                                            <option value="BSI" @if(old('bank_name', $supplier->bank_name) == 'BSI')selected="selected"@endif>BSI</option>--}}
+{{--                                            <option value="Mandiri" @if(old('bank_name', $supplier->bank_name) == 'Mandiri')selected="selected"@endif>Mandiri</option>--}}
+{{--                                        </select>--}}
+                                        <x-input name="bank_name" label="Bank" :value="old('bank_name', $supplier->ifsc)" :required="true"/>
 
                                         @error('bank_name')
                                         <div class="invalid-feedback">

@@ -69,10 +69,10 @@
 
                                         <div class="col-sm-6 col-md-6">
                                             <div class="mb-3">
-{{--                                                <label for="category_id" class="form-label">--}}
-{{--                                                    Rod Diameter--}}
-{{--                                                    <span class="text-danger">*</span>--}}
-{{--                                                </label>--}}
+                                                {{--                                                <label for="category_id" class="form-label">--}}
+                                                {{--                                                    Rod Diameter--}}
+                                                {{--                                                    <span class="text-danger">*</span>--}}
+                                                {{--                                                </label>--}}
 
                                                 {{--                                            @if ($categories->count() === 1)--}}
                                                 {{--                                                <select name="category_id" id="category_id"--}}
@@ -118,41 +118,41 @@
 
                                         <div class="col-sm-6 col-md-6">
                                             <div class="mb-3">
-{{--                                                <label class="form-label" for="unit_id">--}}
-{{--                                                    {{ __('Type') }}--}}
-{{--                                                    <span class="text-danger">*</span>--}}
-{{--                                                </label>--}}
+                                                {{--                                                <label class="form-label" for="unit_id">--}}
+                                                {{--                                                    {{ __('Type') }}--}}
+                                                {{--                                                    <span class="text-danger">*</span>--}}
+                                                {{--                                                </label>--}}
 
-{{--                                                @if ($units->count() === 1)--}}
-{{--                                                    <select name="category_id" id="category_id"--}}
-{{--                                                            class="form-select @error('category_id') is-invalid @enderror"--}}
-{{--                                                            readonly--}}
-{{--                                                    >--}}
-{{--                                                        @foreach ($units as $unit)--}}
-{{--                                                            <option value="{{ $unit->id }}" selected>--}}
-{{--                                                                {{ $unit->name }}--}}
-{{--                                                            </option>--}}
-{{--                                                        @endforeach--}}
-{{--                                                    </select>--}}
-{{--                                                @else--}}
-{{--                                                    <select name="unit_id" id="unit_id"--}}
-{{--                                                            class="form-select @error('unit_id') is-invalid @enderror"--}}
-{{--                                                    >--}}
-{{--                                                        <option selected="" disabled="">--}}
-{{--                                                            Select a unit:--}}
-{{--                                                        </option>--}}
+                                                {{--                                                @if ($units->count() === 1)--}}
+                                                {{--                                                    <select name="category_id" id="category_id"--}}
+                                                {{--                                                            class="form-select @error('category_id') is-invalid @enderror"--}}
+                                                {{--                                                            readonly--}}
+                                                {{--                                                    >--}}
+                                                {{--                                                        @foreach ($units as $unit)--}}
+                                                {{--                                                            <option value="{{ $unit->id }}" selected>--}}
+                                                {{--                                                                {{ $unit->name }}--}}
+                                                {{--                                                            </option>--}}
+                                                {{--                                                        @endforeach--}}
+                                                {{--                                                    </select>--}}
+                                                {{--                                                @else--}}
+                                                {{--                                                    <select name="unit_id" id="unit_id"--}}
+                                                {{--                                                            class="form-select @error('unit_id') is-invalid @enderror"--}}
+                                                {{--                                                    >--}}
+                                                {{--                                                        <option selected="" disabled="">--}}
+                                                {{--                                                            Select a unit:--}}
+                                                {{--                                                        </option>--}}
 
-{{--                                                        @foreach ($units as $unit)--}}
-{{--                                                            <option value="{{ $unit->id }}" @if(old('unit_id') == $unit->id) selected="selected" @endif>{{ $unit->name }}</option>--}}
-{{--                                                        @endforeach--}}
-{{--                                                    </select>--}}
-{{--                                                @endif--}}
+                                                {{--                                                        @foreach ($units as $unit)--}}
+                                                {{--                                                            <option value="{{ $unit->id }}" @if(old('unit_id') == $unit->id) selected="selected" @endif>{{ $unit->name }}</option>--}}
+                                                {{--                                                        @endforeach--}}
+                                                {{--                                                    </select>--}}
+                                                {{--                                                @endif--}}
 
-{{--                                                @error('unit_id')--}}
-{{--                                                <div class="invalid-feedback">--}}
-{{--                                                    {{ $message }}--}}
-{{--                                                </div>--}}
-{{--                                                @enderror--}}
+                                                {{--                                                @error('unit_id')--}}
+                                                {{--                                                <div class="invalid-feedback">--}}
+                                                {{--                                                    {{ $message }}--}}
+                                                {{--                                                </div>--}}
+                                                {{--                                                @enderror--}}
                                                 <x-input label="Unit Weight"
                                                          name="unitWeight"
                                                          type="text"

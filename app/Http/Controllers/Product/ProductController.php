@@ -14,6 +14,7 @@ use Picqer\Barcode\BarcodeGeneratorHTML;
 use Str;
 use function Laravel\Prompts\error;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Ramsey\Uuid\Uuid;
 
 
 class ProductController extends Controller
@@ -56,12 +57,6 @@ class ProductController extends Controller
         }
 
         Product::create([
-            "code" => IdGenerator::generate([
-                'table' => 'products',
-                'field' => 'code',
-                'length' => 4,
-                'prefix' => 'PC'
-            ]),
 
             'product_image'     => $image,
             'name'              => $request->name,
@@ -76,7 +71,7 @@ class ProductController extends Controller
             'notes'             => $request->notes,
             "user_id" => auth()->id(),
             "slug" => Str::slug($request->name, '-'),
-            "uuid" => Str::uuid()
+            "uuid" => Uuid::uuid4()
         ]);
 
 

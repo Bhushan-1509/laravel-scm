@@ -6,7 +6,7 @@
             <div class="row g-2 align-items-center mb-3">
                 <div class="col">
                     <h2 class="page-title">
-                        {{ $customer->name }}
+                        {{ $customer->company_name }}
                     </h2>
                 </div>
             </div>
@@ -19,23 +19,23 @@
         <div class="container-xl">
             <div class="row row-cards">
                 <div class="row">
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h3 class="card-title">
-                                    {{ __('Profile Image') }}
-                                </h3>
+{{--                    <div class="col-lg-4">--}}
+{{--                        <div class="card">--}}
+{{--                            <div class="card-body">--}}
+{{--                                <h3 class="card-title">--}}
+{{--                                    {{ __('Profile Image') }}--}}
+{{--                                </h3>--}}
 
-                                <img id="image-preview"
-                                     class="img-account-profile mb-2"
-                                     src="{{ $customer->photo ? asset('storage/' . $customer->photo) : asset('assets/img/demo/user-placeholder.svg') }}"
-                                     alt=""
-                                >
-                            </div>
-                        </div>
-                    </div>
+{{--                                <img id="image-preview"--}}
+{{--                                     class="img-account-profile mb-2"--}}
+{{--                                     src="{{ $customer->photo ? asset('storage/' . $customer->photo) : asset('assets/img/demo/user-placeholder.svg') }}"--}}
+{{--                                     alt=""--}}
+{{--                                >--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
 
-                    <div class="col-lg-8">
+                    <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">
@@ -47,31 +47,31 @@
                                     <tbody>
                                     <tr>
                                         <td>Name</td>
-                                        <td>{{ $customer->name }}</td>
+                                        <td>{{ $customer->company_name }}</td>
                                     </tr>
                                     <tr>
-                                        <td>Email address</td>
-                                        <td>{{ $customer->email }}</td>
+                                        <td>GST No</td>
+                                        <td>{{ $customer->gst_no }}</td>
                                     </tr>
                                     <tr>
-                                        <td>Phone number</td>
-                                        <td>{{ $customer->phone }}</td>
+                                        <td>Pincode</td>
+                                        <td>{{ $customer->pincode }}</td>
                                     </tr>
                                     <tr>
                                         <td>Address</td>
                                         <td>{{ $customer->address }}</td>
                                     </tr>
                                     <tr>
-                                        <td>Account holder</td>
-                                        <td>{{ $customer->account_holder }}</td>
+                                        <td>State</td>
+                                        <td>{{ $customer->state }}</td>
                                     </tr>
                                     <tr>
-                                        <td>Account number</td>
-                                        <td>{{ $customer->account_number }}</td>
+                                        <td>Distance from andheri</td>
+                                        <td>{{ $customer->distance_from_andheri }} Km</td>
                                     </tr>
                                     <tr>
-                                        <td>Bank name</td>
-                                        <td>{{ $customer->bank_name }}</td>
+                                        <td>Distance from vasai</td>
+                                        <td>{{ $customer->distance_from_vasai }} Km</td>
                                     </tr>
                                     </tbody>
                                 </table>

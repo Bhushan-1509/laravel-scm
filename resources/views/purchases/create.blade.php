@@ -7,6 +7,9 @@
         <x-alert/>
 
         <div class="row row-cards">
+{{--            @if(true)--}}
+{{--                @dd($allProducts);--}}
+{{--            @endif--}}
 
             <form action="{{ route('purchases.store') }}" method="POST">
                 @csrf

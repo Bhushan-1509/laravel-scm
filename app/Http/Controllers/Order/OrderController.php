@@ -6,6 +6,7 @@ use App\Enums\OrderStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Order\OrderStoreRequest;
 use App\Models\Customer;
+use App\Models\Item;
 use App\Models\Order;
 use App\Models\OrderDetails;
 use App\Models\Product;
@@ -36,15 +37,22 @@ class OrderController extends Controller
 //        $products = Product::where('user_id', auth()->id())->with(['category', 'unit'])->get();
 //
 //        $customers = Customer::where('user_id', auth()->id())->get(['id', 'name']);
-
+        $products = Item::all();
         $carts = Cart::content();
+        $customers = Customer::all();
+        $itemsCount = Item::all()->count();
 
 //        return view('orders.create', [
 //            'products' => $products,
 //            'customers' => $customers,
 //            'carts' => $carts,
 //        ]);
-        return view('orders.create');
+        return view('orders.create',[
+            'customers' => $customers,
+            'carts' => $carts,
+            'products' => $products,
+            'itemsCount' => $itemsCount
+        ]);
     }
 
     public function store(OrderStoreRequest $request)

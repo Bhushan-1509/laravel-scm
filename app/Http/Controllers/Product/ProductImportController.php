@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Product;
 
+
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Exception;
+use Faker\Core\Uuid;
 use Illuminate\Http\Request;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use Str;
+
 
 class ProductImportController extends Controller
 {
@@ -33,29 +36,40 @@ class ProductImportController extends Controller
             $data = array();
             foreach ($row_range as $row) {
                 $data[] = [
-                    'name'          => $sheet->getCell('A' . $row)->getValue(),
-                    'slug'          => $sheet->getCell('B' . $row)->getValue(),
-                    'category_id'   => $sheet->getCell('C' . $row)->getValue(),
-                    'unit_id'       => $sheet->getCell('D' . $row)->getValue(),
-                    'code'          => $sheet->getCell('E' . $row)->getValue(),
+                    'company_name'          => $sheet->getCell('A' . $row)->getValue(),
+                    'challan_no'          => $sheet->getCell('B' . $row)->getValue(),
+                    'type'   => $sheet->getCell('C' . $row)->getValue(),
+                    'apm_challan_no'       => $sheet->getCell('D' . $row)->getValue(),
+                    'size'          => $sheet->getCell('E' . $row)->getValue(),
                     'quantity'      => $sheet->getCell('F' . $row)->getValue(),
-                    "quantity_alert" => $sheet->getCell('G' . $row)->getValue(),
-                    'buying_price'  => $sheet->getCell('H' . $row)->getValue(),
-                    'selling_price' => $sheet->getCell('I' . $row)->getValue(),
-                    'product_image' => $sheet->getCell('J' . $row)->getValue(),
-                    'notes' => $sheet->getCell('K' . $row)->getValue(),
+                    "for" => $sheet->getCell('G' . $row)->getValue(),
+                    'cutting_size'  => $sheet->getCell('H' . $row)->getValue(),
+                    'cutting_weight' => $sheet->getCell('I' . $row)->getValue(),
+                    'order_no' => $sheet->getCell('J' . $row)->getValue(),
+                    'order_size' => $sheet->getCell('K' . $row)->getValue(),
+                    'notes' => $sheet->getCell('L' . $row)->getValue(),
                 ];
                 $startcount++;
             }
 
             foreach ($data as $product) {
                 Product::firstOrCreate([
-                    "slug" => $product["slug"],
-                    "code" => $product["code"],
+                    'uuid'=> \Ramsey\Uuid\Nonstandard\Uuid::uuid4(),
+                    'company_name' => $product['company_name'],
+                    'challan_no' => $product['challan_no'],
+                    'type'   => $product['type'],
+                    'apm_challan_no'  => $product['apm_challan_no'],
+                    'size'          => $product['size'],
+                    'quantity'      => $product['quantity'],
+                    "for" => $product['for'],
+                    'cutting_size'  => $product['cutting_size'],
+                    'cutting_weight' => $product['cutting_weight'],
+                    'order_no' => $product['order_no'],
+                    'order_size' => $product['order_size'],
+                    'notes' => $product['notes'],
                 ], $product);
             }
         } catch (Exception $e) {
-            throw $e;
             // $error_code = $e->errorInfo[1];
             return redirect()
                 ->route('products.index')

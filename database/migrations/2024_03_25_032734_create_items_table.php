@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('quantity');
             $table->string('total');
             $table->uuid('uuid');
+            $table->string('status')->default("Pending");
             $table->timestamps();
         });
     }

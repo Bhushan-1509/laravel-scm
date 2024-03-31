@@ -67,12 +67,12 @@
                         @include('inclues._sort-icon', ['field' => 'type'])
                     </a>
                 </th>
-                <th scope="col" class="align-middle text-center">
-                    <a wire:click.prevent="sortBy('created_at')" href="#" role="button">
-                        {{ __('Created at') }}
-                        @include('inclues._sort-icon', ['field' => 'created_at'])
-                    </a>
-                </th>
+{{--                <th scope="col" class="align-middle text-center">--}}
+{{--                    <a wire:click.prevent="sortBy('created_at')" href="#" role="button">--}}
+{{--                        {{ __('Created at') }}--}}
+{{--                        @include('inclues._sort-icon', ['field' => 'created_at'])--}}
+{{--                    </a>--}}
+{{--                </th>--}}
                 <th scope="col" class="align-middle text-center">
                     {{ __('Action') }}
                 </th>
@@ -80,9 +80,10 @@
             </thead>
             <tbody>
             @forelse ($suppliers as $supplier)
+{{--                @dd($supplier)--}}
                 <tr>
                     <td class="align-middle text-center">
-                        {{ $loop->index }}
+                        {{ $loop->index + 1}}
                     </td>
                     <td class="align-middle text-center">
                         {{ $supplier->name }}
@@ -95,20 +96,20 @@
                     </td>
                     <td class="align-middle text-center">
                         <span class="badge bg-primary text-white text-uppercase">
-                            {{ $supplier->type }}
+                            Tier 1
                         </span>
                     </td>
-                    <td class="align-middle text-center">
-                        <span class="">
-                            {{ $supplier->created_at->diffForHumans() }}
-                        </span>
-                    </td>
+{{--                    <td class="align-middle text-center">--}}
+{{--                        <span class="">--}}
+{{--                            {{ $supplier->created_at->diffForHumans() }}--}}
+{{--                        </span>--}}
+{{--                    </td>--}}
                     <td class="align-middle text-center">
                         <x-button.show class="btn-icon" route="{{ route('suppliers.show', $supplier->uuid) }}"/>
                         <x-button.edit class="btn-icon" route="{{ route('suppliers.edit', $supplier->uuid) }}"/>
-                        <x-button.delete 
-                            class="btn-icon" 
-                            route="{{ route('suppliers.destroy', $supplier->uuid) }}" 
+                        <x-button.delete
+                            class="btn-icon"
+                            route="{{ route('suppliers.destroy', $supplier->uuid) }}"
                             onclick="return confirm('Are you sure to remove supplier {{ $supplier->name }} ?!')"
                         />
                     </td>

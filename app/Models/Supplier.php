@@ -23,7 +23,6 @@ class Supplier extends Model
         'address',
         'shopname',
         'type',
-        'photo',
         'account_holder',
         'account_number',
         'bank_name',

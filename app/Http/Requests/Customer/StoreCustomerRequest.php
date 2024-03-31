@@ -34,12 +34,12 @@ class StoreCustomerRequest extends FormRequest
             'address' => 'required|string',
             'city' => 'required|string',
             'pincode' => 'required',
-            'state' => 'required|string',
-            'gst_no' => 'required|string|max:15',
+            'states' => 'required|string',
+            'gstNo' => 'required|string|max:15',
             'companyInSez'=> 'required',
             'companyType' => 'required',
-            'andheri' => 'required|string',
-            'vasai' => 'required|string'
+            'distanceFromAndheri' => 'required|string',
+            'distanceFromVasai' => 'required|string'
         ];
     }
 }

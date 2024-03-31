@@ -5,6 +5,7 @@ namespace App\Livewire\Tables;
 use App\Models\Category;
 use Livewire\Component;
 use Livewire\WithPagination;
+use App\Models\Item;
 
 class ItemsTable extends Component
 {
@@ -31,11 +32,10 @@ class ItemsTable extends Component
 
     public function render()
     {
-        return view('livewire.tables.category-table', [
-            'categories' => Item::where("user_id", auth()->id())->with(['items'])
-                ->search($this->search)
-                ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
-                ->paginate($this->perPage)
+        return view('livewire.tables.items-table', [
+            'items' =>  Item::query()->where('item_name', 'like', '%' . trim($this->search) . '%')
+
+            ->paginate($this->perPage)
         ]);
     }
 }

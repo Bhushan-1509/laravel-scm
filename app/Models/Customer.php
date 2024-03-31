@@ -10,28 +10,29 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Customer extends Model
 {
     use HasFactory;
+    public $timestamps = false;
 
     protected $guarded = [
         'id',
     ];
 
     protected $fillable = [
-        'name',
-        'email',
-        'phone',
+        'uuid',
+        'company_name',
         'address',
-        'photo',
-        'account_holder',
-        'account_number',
-        'bank_name',
-        "user_id",
-        "uuid"
+        'pincode',
+        'state',
+        'gst_no',
+        'company_in_sez',
+        'company_type',
+        'distance_from_andheri',
+        'distance_from_vasai'
     ];
 
-    protected $casts = [
-        'created_at' => 'datetime',
-        'updated_at' => 'datetime',
-    ];
+//    protected $casts = [
+//        'created_at' => 'datetime',
+//        'updated_at' => 'datetime',
+//    ];
 
     public function orders(): HasMany
     {

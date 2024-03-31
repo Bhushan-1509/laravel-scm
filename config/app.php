@@ -29,6 +29,7 @@ return [
     |
     */
 
+    'Google2FA' => \PragmaRX\Google2FALaravel\ServiceProvider::class,
     'env' => env('APP_ENV', 'production'),
 
     /*
