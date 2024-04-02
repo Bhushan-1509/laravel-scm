@@ -272,10 +272,30 @@
                                                 @enderror
                                             </div>
                                         </div>
+                                        <div class="col-sm-6 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="tax_type">
+                                                    {{ __('Stage') }}
+                                                </label>
+                                                <select class="form-control" name="stage">
+                                                    <option value="1">Stage 1</option>
+                                                    <option value="2">Stage 2</option>
+                                                    <option value="3">Stage 3</option>
+                                                    <option value="4">Stage 4</option>
+                                                    <option value="5">Stage 5</option>
+                                                </select>
+                                                @error('stage')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+
                                         <div class="col-md-12">
                                             <div class="mb-3 mb-0">
                                                 <label for="notes" class="form-label">
-                                                    {{ __('notes') }}
+                                                    {{ __('Notes') }}
                                                 </label>
 
                                                 <textarea name="notes" id="notes" rows="5" class="form-control @error('notes') is-invalid @enderror"

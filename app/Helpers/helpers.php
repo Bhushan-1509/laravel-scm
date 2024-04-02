@@ -15,7 +15,15 @@ if (!function_exists('settings')) {
         return $settings;
     }
 }
-
+if(!function_exists('removeInvalidCharacters')) {
+    function removeInvalidCharacters($value)
+    {
+        if (is_string($value)) {
+            $value = preg_replace('/[^\PC\s]/u', '', $value); // Remove invalid characters
+        }
+        return $value;
+    }
+}
 if(!function_exists('generateQrCode')){
     function generateQrCode($inputString)
     {

@@ -37,6 +37,7 @@ class UpdateProductRequest extends FormRequest
 //            'notes'             => 'nullable|max:1000'
             'companyName' => 'required|string',
             'challanNo' => 'required|alpha_dash:ascii',
+            'stage' => 'required',
             'type' => 'required',
             'apmChallanNo' => 'required|alpha_dash:ascii',
             'size' => 'required|numeric',

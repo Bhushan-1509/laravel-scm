@@ -33,7 +33,7 @@ class ProductTable extends Component
     public function render()
     {
         $products = Product::query()
-            ->where('company_name', 'like', '%' . trim($this->search) . '%')
+            ->where('material_name', 'like', '%' . trim($this->search) . '%')
             ->orWhere('challan_no', 'like', '%' . trim($this->search) . '%')
             ->paginate($this->perPage);
         return view('livewire.tables.product-table', ['products' => $products]);

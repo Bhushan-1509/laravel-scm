@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string("customer");
             $table->integer("order_no");
             $table->decimal("rate");
-            $table->integer("product_id");
+            $table->string("products");
             $table->integer('status')->default(0);
             $table->timestamps();
         });

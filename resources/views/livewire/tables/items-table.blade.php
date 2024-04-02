@@ -7,7 +7,7 @@
         </div>
 
         <div class="card-actions">
-            <x-action.create route="{{ route('purchases.create') }}" />
+            <x-action.create route="{{ route('items.create') }}" />
         </div>
     </div>
 
@@ -45,7 +45,7 @@
                 </th>
                 <th scope="col" class="align-middle text-center">
                     <a wire:click.prevent="sortBy('purchase_no')" href="#" role="button">
-                        {{ __('Product Name.') }}
+                        {{ __('Product Name') }}
                         @include('inclues._sort-icon', ['field' => 'purchase_no'])
                     </a>
                 </th>
@@ -97,14 +97,14 @@
                         {{ $item->unit_weight }} kg
                     </td>
                     <td class="align-middle text-center">
-                        {{ $item->unit_price }} INR
+                        ₹{{ $item->unit_price }}
                     </td>
                     <td class="align-middle text-center">
                         {{ $item->quantity }}
                     </td>
-                    <td class="align-middle text-center">
-                        {{ $item->total }}  INR
-                    </td>
+{{--                    <td class="align-middle text-center">--}}
+{{--                        ₹{{ $item->total }}--}}
+{{--                    </td>--}}
 
 
                     <td class="align-middle text-center" style="width: 10%">

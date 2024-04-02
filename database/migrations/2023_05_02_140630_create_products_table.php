@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->uuid()->nullable();
+            $table->string("material_name");
             $table->string('company_name');
             $table->string('challan_no');
-            $table->string('type');
             //$table->string('product_barcode_symbology')->nullable();
             $table->string('apm_challan_no');
             $table->integer('size');

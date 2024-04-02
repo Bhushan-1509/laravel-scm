@@ -48,30 +48,22 @@ class ProductController extends Controller
 
     public function store(StoreProductRequest $request)
     {
-        /**
-         * Handle upload image
-         */
-        $image = "";
-        if ($request->hasFile('product_image')) {
-            $image = $request->file('product_image')->store('products', 'public');
-        }
 
         Product::create([
 
-            'product_image'     => $image,
-            'name'              => $request->name,
-            'category_id'       => $request->category_id,
-            'unit_id'           => $request->unit_id,
-            'quantity'          => $request->quantity,
-            'buying_price'      => $request->buying_price,
-            'selling_price'     => $request->selling_price,
-            'quantity_alert'    => $request->quantity_alert,
-            'tax'               => $request->tax,
-            'tax_type'          => $request->tax_type,
-            'notes'             => $request->notes,
-            "user_id" => auth()->id(),
-            "slug" => Str::slug($request->name, '-'),
-            "uuid" => Uuid::uuid4()
+                'company_name' => $request->companyName,
+    //        $product->slug = Str::slug($request->name, '-');
+            'challan_no' => $request->challanNo,
+            'apm_challan_no' => $request->apmChallanNo,
+            'size' => $request->size,
+            'quantity' => $request->quantity,
+            'for' => $request->for,
+            'cutting_size' => $request->cuttingSize,
+            'cutting_weight' => $request->cuttingWeight,
+            'order_no' => $request->orderNo,
+            'order_size' => $request->orderSize,
+            'notes' => $request->notes,
+            'stage' => $request->stage
         ]);
 
 
@@ -106,17 +98,6 @@ class ProductController extends Controller
     {
         $product = Product::where("uuid", $uuid)->firstOrFail();
 
-//        $product->update($request->except('product_image'));
-
-//        $image = $product->product_image;
-//        if ($request->hasFile('product_image')) {
-//
-//            // Delete Old Photo
-//            if ($product->product_image) {
-//                unlink(public_path('storage/') . $product->product_image);
-//            }
-//            $image = $request->file('product_image')->store('products', 'public');
-//        }
 
         $product->company_name = $request->companyName;
 //        $product->slug = Str::slug($request->name, '-');
@@ -131,6 +112,7 @@ class ProductController extends Controller
         $product->order_no = $request->orderNo;
         $product->order_size = $request->orderSize;
         $product->notes = $request->notes;
+        $product->stage = $request->stage;
         $result = $product->save();
 
         if(!$result){

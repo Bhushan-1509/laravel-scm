@@ -13,18 +13,67 @@ class OrderSeeder extends Seeder
     /**
      * Run the database seeds.
      */
+
+    private function generateRandomDateInYear($year) {
+        $faker = Faker::create();
+
+        // Set the start and end date of the specified year
+        $startDate = strtotime("$year-01-01");
+        $endDate = strtotime("$year-12-31");
+
+        // Generate a random timestamp within the specified range
+        $randomTimestamp = mt_rand($startDate, $endDate);
+        // Convert the timestamp to a DateTime object
+        $randomDate = date('Y-m-d', $randomTimestamp);
+
+        return $randomDate;
+    }
+
+
+    private function giveMaterialName()
+    {
+        $items = array(
+            "Steel",
+            "Aluminum",
+            "Plastic",
+            "Glass",
+            "Rubber",
+            "Wood",
+            "Copper",
+            "Fabric",
+        );
+
+        $randomKey = array_rand($items);
+        $randomItem = $items[$randomKey];
+
+        return $randomItem;
+    }
+
+    private function generateProductJsonString()
+    {
+        $products = array();
+        for ($i = 0; $i < 3; $i++) {
+            $products[] = array(
+                'name' => $this->giveMaterialName()
+            );
+        }
+        return json_encode(['products' => $products]);
+    }
+
     public function run(): void
     {
         $faker = Faker::create();
         $i = 0;
         foreach (range(1, 40) as $index) {
+            $i++;
             DB::table('orders')->insert([
-                'order_date' => date("Y-m-d H:i:s"),
+                'order_date' => $this->generateRandomDateInYear(2024, 10),
                 'customer' => $faker->company(),
-                'order_no' => $i + 1,
+                'order_no' => $i,
                 'rate' => 12,
-                'product_id' => 1,
+                'products' => $this->generateProductJsonString()
             ]);
         }
     }
 }
+

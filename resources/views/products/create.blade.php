@@ -115,45 +115,45 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-sm-6 col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="unit_id">
-                                                {{ __('Type') }}
-                                                <span class="text-danger">*</span>
-                                            </label>
+{{--                                    <div class="col-sm-6 col-md-6">--}}
+{{--                                        <div class="mb-3">--}}
+{{--                                            <label class="form-label" for="unit_id">--}}
+{{--                                                {{ __('Type') }}--}}
+{{--                                                <span class="text-danger">*</span>--}}
+{{--                                            </label>--}}
 
-                                            @if ($units->count() === 1)
-                                                <select name="category_id" id="category_id"
-                                                        class="form-select @error('category_id') is-invalid @enderror"
-                                                        readonly
-                                                >
-                                                    @foreach ($units as $unit)
-                                                        <option value="{{ $unit->id }}" selected>
-                                                            {{ $unit->name }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            @else
-                                                <select name="unit_id" id="unit_id"
-                                                        class="form-select @error('unit_id') is-invalid @enderror"
-                                                >
-                                                    <option selected="" disabled="">
-                                                        Select a unit:
-                                                    </option>
+{{--                                            @if ($units->count() === 1)--}}
+{{--                                                <select name="category_id" id="category_id"--}}
+{{--                                                        class="form-select @error('category_id') is-invalid @enderror"--}}
+{{--                                                        readonly--}}
+{{--                                                >--}}
+{{--                                                    @foreach ($units as $unit)--}}
+{{--                                                        <option value="{{ $unit->id }}" selected>--}}
+{{--                                                            {{ $unit->name }}--}}
+{{--                                                        </option>--}}
+{{--                                                    @endforeach--}}
+{{--                                                </select>--}}
+{{--                                            @else--}}
+{{--                                                <select name="unit_id" id="unit_id"--}}
+{{--                                                        class="form-select @error('unit_id') is-invalid @enderror"--}}
+{{--                                                >--}}
+{{--                                                    <option selected="" disabled="">--}}
+{{--                                                        Select a unit:--}}
+{{--                                                    </option>--}}
 
-                                                    @foreach ($units as $unit)
-                                                        <option value="{{ $unit->id }}" @if(old('unit_id') == $unit->id) selected="selected" @endif>{{ $unit->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            @endif
+{{--                                                    @foreach ($units as $unit)--}}
+{{--                                                        <option value="{{ $unit->id }}" @if(old('unit_id') == $unit->id) selected="selected" @endif>{{ $unit->name }}</option>--}}
+{{--                                                    @endforeach--}}
+{{--                                                </select>--}}
+{{--                                            @endif--}}
 
-                                            @error('unit_id')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                            @enderror
-                                        </div>
-                                    </div>
+{{--                                            @error('unit_id')--}}
+{{--                                            <div class="invalid-feedback">--}}
+{{--                                                {{ $message }}--}}
+{{--                                            </div>--}}
+{{--                                            @enderror--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
 
                                     <div class="col-sm-6 col-md-6">
                                         <x-input type="text"
@@ -203,7 +203,7 @@
                                                  label="Cutting Size"
                                                  name="cuttingSize"
                                                  id="tax"
-                                                 placeholder="0"
+                                                 placeholder="in meters"
                                                  value="{{ old('tax') }}"
                                                  required="true"
                                         />
@@ -233,7 +233,7 @@
                                             <x-input type="number" name="cuttingWeight"
                                                      label="Cutting Weight"
                                                      id="tax_type"
-                                                     placeholder="0"
+                                                     placeholder="in kgs"
                                                      value="{{ old('name') }}"
                                                      required="true"
                                             />

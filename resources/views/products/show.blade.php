@@ -6,7 +6,7 @@
             <div class="row g-2 align-items-center mb-3">
                 <div class="col">
                     <h2 class="page-title">
-                        {{ $product->name }}
+                        {{ $product->material_name }}
                     </h2>
                 </div>
             </div>
@@ -114,7 +114,7 @@
 
                                         <tr>
                                             <td>Quantity</td>
-                                            <td>{{ $product->quantity }}</td>
+                                            <td>{{ $product->quantity }} Units</td>
                                         </tr>
                                         <tr>
                                             <td>Cutting Size</td>
@@ -122,13 +122,13 @@
 {{--                                                <span class="badge bg-red-lt">--}}
 {{--                                                    {{ $product->quantity_alert }}--}}
 {{--                                                </span>--}}
-                                                {{ $product->cutting_size }}
+                                                {{ $product->cutting_size }} meters
                                             </td>
                                         </tr>
 
                                         <tr>
                                             <td>Cutting Weight</td>
-                                            <td>{{ $product->cutting_weight }}</td>
+                                            <td>{{ $product->cutting_weight }} kg</td>
                                         </tr>
                                         <tr>
                                             <td>Order No</td>

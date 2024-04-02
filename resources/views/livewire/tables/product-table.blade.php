@@ -70,7 +70,7 @@
 {{--                    </th>--}}
                     <th scope="col" class="align-middle text-center">
                         <a wire:click.prevent="sortBy('companyName')" href="#" role="button">
-                            {{ __('Company Name') }}
+                            {{ __('Raw material') }}
                             @include('inclues._sort-icon', ['field' => 'companyName'])
                         </a>
                     </th>
@@ -81,15 +81,9 @@
                         </a>
                     </th>
                     <th scope="col" class="align-middle text-center">
-                        <a wire:click.prevent="sortBy('cuttingSize')" href="#" role="button">
-                            {{ __('Cutting Size') }}
-                            @include('inclues._sort-icon', ['field' => 'cuttingSize'])
-                        </a>
-                    </th>
-                    <th scope="col" class="align-middle text-center">
-                        <a wire:click.prevent="sortBy('cuttingWeight')" href="#" role="button">
-                            {{ __('Cutting Weight') }}
-                            @include('inclues._sort-icon', ['field' => 'cuttingWeight'])
+                        <a wire:click.prevent="sortBy('challanNo')" href="#" role="button">
+                            {{ __('Qty') }}
+                            @include('inclues._sort-icon', ['field' => 'challanNo'])
                         </a>
                     </th>
                     <th scope="col" class="align-middle text-center">
@@ -109,16 +103,13 @@
 {{--                                alt="">--}}
 {{--                        </td>--}}
                         <td class="align-middle text-center">
-                            {{ $product->company_name }}
+                            {{ $product->material_name }}
                         </td>
                         <td class="align-middle text-center">
                             {{ $product->challan_no }}
                         </td>
                         <td class="align-middle text-center">
-                            {{ $product->cutting_size}} m
-                        </td>
-                        <td class="align-middle text-center">
-                            {{ $product->cutting_weight }} kg
+                            {{ $product->quantity }} units
                         </td>
                         <td class="align-middle text-center" style="width: 10%">
                             <x-button.show class="btn-icon" route="{{ route('products.show', $product->uuid) }}" />

@@ -4,44 +4,57 @@ namespace App\Http\Controllers\Visual;
 
 use App\Charts\OrdersChart;
 use App\Http\Controllers\Controller;
+use App\Models\Product;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use Carbon\Carbon;
 use ConsoleTVs\Charts\Facades\Charts;
+use Illuminate\Support\Facades\Http;
 
 class VisualController extends Controller
 {
     public function index(Request $request)
     {
-//        // Retrieve data from the Order model
-//        $orders = Order::selectRaw('product_id, order_date, SUM(rate) as total_sales')
-//            ->groupBy('product_id', 'order_date')
-//            ->get();
-//
-//        // Format the data for the chart
-//        $chartData = [];
-//        foreach ($orders as $order) {
-//            $orderDate = Carbon::parse($order->order_date); // Parse the string into a DateTime object
-//            $formattedDate = $orderDate->format('Y-m'); // Format the date
-//            $chartData[$order->product_id][$formattedDate] = $order->total_sales;
-//        }
-//
-//        // Create the chart
-//        $chart = Charts::multi('line', 'highcharts')
-//            ->title('Total Sales per Product over Time')
-//            ->dimensions(1000, 500)
-//            ->responsive(false);
-//
-//        // Add dataset for each product
-//        foreach ($chartData as $productId => $salesData) {
-//            $chart->dataset("Product $productId", 'line', array_values($salesData))
-//                ->color($this->generateRandomColor());
-//        }
-//
-//        return view('charts.index', compact('chart'));
-        $chart = new OrdersChart();
+        // Extract JSON data from the request or any other processing
+        $orders = Order::all();
+        $materials = Product::all();
+        $suppliers = Supplier::all();
+        $orderArr = json_decode($orders->toJson());
+        $materialArr = json_decode($materials->toJson());
+        $supplierArr = json_decode($suppliers->toJson());
+        $jsonDataOrder = array(
+            'orders' => $orderArr
+        );
 
-        return view('visual', ['chart' => $chart]);
+        $jsonDataMaterial = array(
+            'raw_materials' => $materialArr
+        );
+        $jsonDataSupplier = array(
+            'suppliers' => $supplierArr
+        );
+
+
+        $responseOrderPieChart = Http::post('http://127.0.0.1:5000/orders-pie-chart', json_encode($jsonDataOrder ));
+        $responseOrderBarChart = Http::post('http://127.0.0.1:5000/orders-bar-graph', json_encode($jsonDataOrder));
+        $responseMaterialPieChart = Http::post('http://127.0.0.1:5000/material-pie-chart',json_encode($jsonDataMaterial));
+        $responseSupplierPieChart = Http::post('http://127.0.0.1:5000/supplier-pie-chart', json_encode($jsonDataSupplier));
+        if ($responseOrderPieChart->successful() && $responseOrderBarChart->successful() && $responseMaterialPieChart->successful() && $responseSupplierPieChart->successful()) {
+            $responseOrderPieChartData = $responseOrderPieChart->body();
+            $responseOrderBarChartData = $responseOrderBarChart->body();
+            $responseMaterialPieChartData = $responseMaterialPieChart->body();
+            $responseSupplierPieChartData = $responseSupplierPieChart->body();
+            return view('visual', [
+                'orderPieChart' => $responseOrderPieChartData,
+                'orderBarChart'=>  $responseOrderBarChartData,
+                'materialPieChart' => $responseMaterialPieChartData,
+                'supplierPieChart' => $responseSupplierPieChartData
+            ]);
+        } else {
+            // Handle failed request
+            return response()->json(['error' => 'Failed to send POST request'], status: 403);
+        }
+//        return view('visual', ['chart' => $chart]);
     }
 
     // Helper function to generate random colors

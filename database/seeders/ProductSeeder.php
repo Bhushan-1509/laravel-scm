@@ -18,6 +18,25 @@ use Ramsey\Uuid\Uuid;
 
 class ProductSeeder extends Seeder
 {
+    private function giveMaterialName()
+    {
+        $items = array(
+            "Steel",
+            "Aluminum",
+            "Plastic",
+            "Glass",
+            "Rubber",
+            "Wood",
+            "Copper",
+            "Fabric",
+            // Add more raw materials as needed
+        );
+
+        $randomKey = array_rand($items);
+        $randomItem = $items[$randomKey];
+
+        return $randomItem;
+    }
     private function generateChallanNumber()
     {
         $prefix = 'CHL';
@@ -35,9 +54,9 @@ class ProductSeeder extends Seeder
         foreach (range(1, 40) as $index) {
             DB::table('products')->insert([
                 'uuid' => Uuid::uuid4(),
+                'material_name' => $this->giveMaterialName(),
                 'company_name' => $faker->company,
                 'challan_no' => $this->generateChallanNumber(),
-                 'type' => $faker->bloodType(),
                  'apm_challan_no' => $this->generateChallanNumber(),
                  'size' => $faker->numberBetween(1,20),
                  'quantity' => $faker->numberBetween(1,24),

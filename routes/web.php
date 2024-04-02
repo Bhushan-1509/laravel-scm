@@ -148,15 +148,12 @@ Route::middleware(['auth', '2fa'])->group(function () {
 
         }
         else{
-            $uuid = $request->has('uuid');
+            $uuid = trim($request->has('uuid'));
             $product = Product::where('uuid', $uuid)->first();
             return view('track', ['product' => $product]);
         }
     })->name('track.material');
 
-    Route::post('/track', function(){
-
-    });
     Route::resource('/items', \App\Http\Controllers\Item\ItemController::class)->names([
         'index' => 'items.index',
         'create' => 'items.create',

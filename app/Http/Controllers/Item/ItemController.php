@@ -27,7 +27,6 @@ class ItemController extends Controller
            'unitWeight' => 'required|numeric',
            'unitPrice' => 'required|numeric',
            'quantity' => 'required|numeric',
-           'total' => 'required|numeric'
        ]);
 
        $product = new Item;
@@ -36,9 +35,8 @@ class ItemController extends Controller
        $product->unit_weight = $request->input('unitWeight');
        $product->unit_price = $request->input('unitPrice');
        $product->quantity = $request->input('quantity');
-       $product->total = $request->input('total');
+       $product->total = $product->quantity * $product->unit_price;
        $product->uuid = Uuid::uuid4();
-
 
 
        if($product->save()){

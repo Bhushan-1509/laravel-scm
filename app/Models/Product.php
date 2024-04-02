@@ -16,9 +16,9 @@ class Product extends Model
 
     public $fillable = [
         'uuid',
+        'material_name',
         'company_name',
         'challan_no',
-        'type',
         'apm_challan_no',
         'size',
         'quantity',

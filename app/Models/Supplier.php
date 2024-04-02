@@ -33,7 +33,6 @@ class Supplier extends Model
     protected $casts = [
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
-        'type' => SupplierType::class
     ];
 
     public function purchases(): HasMany

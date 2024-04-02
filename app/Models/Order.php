@@ -18,7 +18,7 @@ class Order extends Model
       'customer',
         'order_no',
         'rate',
-        'product_id',
+        'products',
         'status',
         'order_date'
     ];

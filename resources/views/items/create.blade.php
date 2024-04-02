@@ -104,7 +104,7 @@
                                                          name="rodDiameter"
                                                          type="text"
                                                          id="rodDiameter"
-                                                         placeholder="0"
+                                                         placeholder="in meters"
                                                          required="true"
                                                          value="{{ old('rodDiameter') }}"
                                                 />
@@ -157,7 +157,7 @@
                                                          name="unitWeight"
                                                          type="text"
                                                          id="unitWeight"
-                                                         placeholder="0"
+                                                         placeholder="in kgs"
                                                          required="true"
                                                          value="{{ old('unitWeight') }}"
                                                 />
@@ -174,7 +174,7 @@
                                                      label="Unit Price"
                                                      name="unitPrice"
                                                      id="unitPrice"
-                                                     placeholder="0"
+                                                     placeholder="₹"
                                                      value="{{ old('unitPrice') }}"
                                                      required="true"
                                             />
@@ -201,20 +201,20 @@
                                             @enderror
                                         </div>
 
-                                        <div class="col-sm-6 col-md-6">
-                                            <x-input type="text"
-                                                     label="Total"
-                                                     name="total"
-                                                     id="total"
-                                                     placeholder="0"
-                                                     value="{{ old('total') }}"
-                                            />
-                                            @error('total')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                            @enderror
-                                        </div>
+{{--                                        <div class="col-sm-6 col-md-6">--}}
+{{--                                            <x-input type="text"--}}
+{{--                                                     label="Total"--}}
+{{--                                                     name="total"--}}
+{{--                                                     id="total"--}}
+{{--                                                     placeholder="0"--}}
+{{--                                                     value="{{ old('total') }}"--}}
+{{--                                            />--}}
+{{--                                            @error('total')--}}
+{{--                                            <div class="invalid-feedback">--}}
+{{--                                                {{ $message }}--}}
+{{--                                            </div>--}}
+{{--                                            @enderror--}}
+{{--                                        </div>--}}
 
 
 
