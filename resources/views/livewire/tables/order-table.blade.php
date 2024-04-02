@@ -44,12 +44,7 @@
                     <th class="align-middle text-center w-1">
                         {{ __('No.') }}
                     </th>
-                    <th scope="col" class="align-middle text-center">
-                        <a wire:click.prevent="sortBy('invoice_no')" href="#" role="button">
-                            {{ __('Invoice No.') }}
-                            @include('inclues._sort-icon', ['field' => 'invoice_no'])
-                        </a>
-                    </th>
+
                     <th scope="col" class="align-middle text-center">
                         <a wire:click.prevent="sortBy('customer_id')" href="#" role="button">
                             {{ __('Customer') }}
@@ -62,18 +57,7 @@
                             @include('inclues._sort-icon', ['field' => 'order_date'])
                         </a>
                     </th>
-                    <th scope="col" class="align-middle text-center">
-                        <a wire:click.prevent="sortBy('payment_type')" href="#" role="button">
-                            {{ __('Paymet') }}
-                            @include('inclues._sort-icon', ['field' => 'payment_type'])
-                        </a>
-                    </th>
-                    <th scope="col" class="align-middle text-center">
-                        <a wire:click.prevent="sortBy('total')" href="#" role="button">
-                            {{ __('Total') }}
-                            @include('inclues._sort-icon', ['field' => 'total'])
-                        </a>
-                    </th>
+
                     <th scope="col" class="align-middle text-center">
                         <a wire:click.prevent="sortBy('order_status')" href="#" role="button">
                             {{ __('Status') }}
@@ -81,7 +65,7 @@
                         </a>
                     </th>
                     <th scope="col" class="align-middle text-center">
-                        {{ __('Action') }}
+                        {{ __('Order id') }}
                     </th>
                 </tr>
             </thead>
@@ -91,37 +75,32 @@
                         <td class="align-middle text-center">
                             {{ $loop->iteration }}
                         </td>
+
                         <td class="align-middle text-center">
-                            {{ $order->invoice_no }}
+                            {{ $order->customer }}
                         </td>
                         <td class="align-middle text-center">
-                            {{ $order->customer->name }}
+                            {{ $order->order_date }}
                         </td>
                         <td class="align-middle text-center">
-                            {{ $order->order_date->format('d-m-Y') }}
+{{--                            {{ $order->status }}--}}
+                            @if($order->status == 0) Pending @endif
+                            @if($order->status == 1) Completed @endif
                         </td>
                         <td class="align-middle text-center">
-                            {{ $order->payment_type }}
+                            {{ $order->id }}
                         </td>
-                        <td class="align-middle text-center">
-                            {{ Number::currency($order->total, 'EUR') }}
-                        </td>
-                        <td class="align-middle text-center">
-                            <x-status dot
-                                color="{{ $order->order_status === \App\Enums\OrderStatus::COMPLETE ? 'green' : ($order->order_status === \App\Enums\OrderStatus::PENDING ? 'orange' : '') }}"
-                                class="text-uppercase">
-                                {{ $order->order_status->label() }}
-                            </x-status>
-                        </td>
-                        <td class="align-middle text-center">
-                            <x-button.show class="btn-icon" route="{{ route('orders.show', $order->uuid) }}" />
-                            <x-button.print class="btn-icon"
-                                route="{{ route('order.downloadInvoice', $order->uuid) }}" />
-                            @if ($order->order_status === \App\Enums\OrderStatus::PENDING)
-                                <x-button.delete class="btn-icon" route="{{ route('orders.cancel', $order) }}"
-                                    onclick="return confirm('Are you sure to cancel invoice no. {{ $order->invoice_no }} ?')" />
-                            @endif
-                        </td>
+
+
+{{--                        <td class="align-middle text-center">--}}
+{{--                            <x-button.show class="btn-icon" route="{{ route('orders.show', $order->uuid) }}" />--}}
+{{--                            <x-button.print class="btn-icon"--}}
+{{--                                route="{{ route('order.downloadInvoice', $order->uuid) }}" />--}}
+{{--                            @if ($order->order_status === \App\Enums\OrderStatus::PENDING)--}}
+{{--                                <x-button.delete class="btn-icon" route="{{ route('orders.cancel', $order) }}"--}}
+{{--                                    onclick="return confirm('Are you sure to cancel invoice no. {{ $order->invoice_no }} ?')" />--}}
+{{--                            @endif--}}
+{{--                        </td>--}}
                     </tr>
                 @empty
                     <tr>
@@ -134,14 +113,14 @@
         </table>
     </div>
 
-    <div class="card-footer d-flex align-items-center">
-        <p class="m-0 text-secondary">
-            Showing <span>{{ $orders->firstItem() }}</span> to <span>{{ $orders->lastItem() }}</span> of
-            <span>{{ $orders->total() }}</span> entries
-        </p>
+{{--    <div class="card-footer d-flex align-items-center">--}}
+{{--        <p class="m-0 text-secondary">--}}
+{{--            Showing <span>{{ $orders->firstItem() }}</span> to <span>{{ $orders->lastItem() }}</span> of--}}
+{{--            <span>{{ $orders->total() }}</span> entries--}}
+{{--        </p>--}}
 
-        <ul class="pagination m-0 ms-auto">
-            {{ $orders->links() }}
-        </ul>
-    </div>
+{{--        <ul class="pagination m-0 ms-auto">--}}
+{{--            {{ $orders->links() }}--}}
+{{--        </ul>--}}
+{{--    </div>--}}
 </div>

@@ -299,12 +299,12 @@
                                             <a class="dropdown-item" href="{{ route('orders.index') }}">
                                                 {{ __('All') }}
                                             </a>
-                                            <a class="dropdown-item" href="{{ route('orders.complete') }}">
-                                                {{ __('Completed') }}
-                                            </a>
-                                            <a class="dropdown-item" href="{{ route('orders.pending') }}">
-                                                {{ __('Pending') }}
-                                            </a>
+{{--                                            <a class="dropdown-item" href="{{ route('orders.complete') }}">--}}
+{{--                                                {{ __('Completed') }}--}}
+{{--                                            </a>--}}
+{{--                                            <a class="dropdown-item" href="{{ route('orders.pending') }}">--}}
+{{--                                                {{ __('Pending') }}--}}
+{{--                                            </a>--}}
                                         </div>
                                     </div>
                                 </div>
@@ -330,19 +330,19 @@
                                         </svg>
                                     </span>
                                     <span class="nav-link-title">
-                                        {{ __('Purchases') }}
+                                        {{ __('Order Details') }}
                                     </span>
                                 </a>
                                 <div class="dropdown-menu">
                                     <div class="dropdown-menu-columns">
                                         <div class="dropdown-menu-column">
-                                            <a class="dropdown-item" href="{{ route('purchases.index') }}">
-                                                {{ __('All') }}
+                                            <a class="dropdown-item" href="{{ route('visual.index') }}">
+                                                {{ __('Analytics') }}
                                             </a>
-                                            <a class="dropdown-item"
-                                                href="{{ route('purchases.purchaseReport') }}">
-                                                {{ __('Daily Purchase Report') }}
-                                            </a>
+{{--                                            <a class="dropdown-item"--}}
+{{--                                                href="{{ route('purchases.purchaseReport') }}">--}}
+{{--                                                {{ __('Daily Purchase Report') }}--}}
+{{--                                            </a>--}}
                                         </div>
                                     </div>
                                 </div>
@@ -592,6 +592,8 @@
     <!-- Tabler Core -->
     <script src="{{ asset('dist/js/tabler.min.js') }}" defer></script>
     <script src="{{ asset('dist/js/demo.min.js') }}" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     {{-- - Page Scripts - --}}
     @stack('page-scripts')
 

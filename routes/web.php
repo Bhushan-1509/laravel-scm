@@ -19,6 +19,8 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\UserController;
 use App\Models\Item;
+use App\Models\Product;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -112,7 +114,7 @@ Route::middleware(['auth', '2fa'])->group(function () {
     // TODO: Remove from OrderController
     Route::get('/orders/details/{order_id}/download', [OrderController::class, 'downloadInvoice'])->name('order.downloadInvoice');
 
-
+    Route::get('/visual',[\App\Http\Controllers\Visual\VisualController::class, 'index'])->name('visual.index');
     // Route Purchases
     Route::get('/purchases/approved', [PurchaseController::class, 'approvedPurchases'])->name('purchases.approvedPurchases');
     Route::get('/purchases/report', [PurchaseController::class, 'purchaseReport'])->name('purchases.purchaseReport');
@@ -140,7 +142,21 @@ Route::middleware(['auth', '2fa'])->group(function () {
 //    Route::get('items/create', function(){
 //        return view('items.create', ['items' => null]);
 //    })->name('items.create');
+    Route::get('/track', function (Request $request){
+        if(!$request->has('uuid')){
+            return view('track');
 
+        }
+        else{
+            $uuid = $request->has('uuid');
+            $product = Product::where('uuid', $uuid)->first();
+            return view('track', ['product' => $product]);
+        }
+    })->name('track.material');
+
+    Route::post('/track', function(){
+
+    });
     Route::resource('/items', \App\Http\Controllers\Item\ItemController::class)->names([
         'index' => 'items.index',
         'create' => 'items.create',

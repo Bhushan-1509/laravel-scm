@@ -13,21 +13,12 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->uuid();
-            $table->foreignId("user_id")->constrained()->onDelete('cascade');
-            $table->foreignIdFor(\App\Models\Customer::class)
-                ->constrained();
-            $table->string('order_date');
-            $table->tinyInteger('order_status')
-                ->comment('0 - Pending / 1 - Complete');
-            $table->integer('total_products');
-            $table->integer('sub_total');
-            $table->integer('vat');
-            $table->integer('total');
-            $table->string('invoice_no');
-            $table->string('payment_type');
-            $table->integer('pay');
-            $table->integer('due');
+            $table->date('order_date');
+            $table->string("customer");
+            $table->integer("order_no");
+            $table->decimal("rate");
+            $table->integer("product_id");
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }

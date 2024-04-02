@@ -91,19 +91,19 @@
                         {{ $item->item_name }}
                     </td>
                     <td class="align-middle text-center">
-                        {{ $item->rod_diameter }}
+                        {{ $item->rod_diameter }} m
                     </td>
                     <td class="align-middle text-center">
-                        {{ $item->unit_weight }}
+                        {{ $item->unit_weight }} kg
                     </td>
                     <td class="align-middle text-center">
-                        {{ $item->unit_price }}
+                        {{ $item->unit_price }} INR
                     </td>
                     <td class="align-middle text-center">
                         {{ $item->quantity }}
                     </td>
                     <td class="align-middle text-center">
-                        {{ $item->total }}
+                        {{ $item->total }}  INR
                     </td>
 
 

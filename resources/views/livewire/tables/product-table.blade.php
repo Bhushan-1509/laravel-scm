@@ -115,10 +115,10 @@
                             {{ $product->challan_no }}
                         </td>
                         <td class="align-middle text-center">
-                            {{ $product->cutting_size}}
+                            {{ $product->cutting_size}} m
                         </td>
                         <td class="align-middle text-center">
-                            {{ $product->cutting_weight }}
+                            {{ $product->cutting_weight }} kg
                         </td>
                         <td class="align-middle text-center" style="width: 10%">
                             <x-button.show class="btn-icon" route="{{ route('products.show', $product->uuid) }}" />

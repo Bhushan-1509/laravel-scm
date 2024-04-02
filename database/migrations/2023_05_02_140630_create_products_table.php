@@ -26,7 +26,7 @@ return new class extends Migration
             $table->decimal('cutting_weight');
             $table->integer('order_no');
             $table->integer('order_size')->nullable();
-            $table->string("stage")->default("Stage 1");
+            $table->integer("stage")->default(1);
             $table->text('notes');
             $table->timestamps();
         });

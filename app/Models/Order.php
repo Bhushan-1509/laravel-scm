@@ -12,29 +12,23 @@ class Order extends Model
     protected $guarded = [
         'id',
     ];
+    protected $dates = ['order_date']; // Specify 'order_date' as a date attribute
 
     protected $fillable = [
-        'customer_id',
-        'order_date',
-        'order_status',
-        'total_products',
-        'sub_total',
-        'vat',
-        'total',
-        'invoice_no',
-        'payment_type',
-        'pay',
-        'due',
-        "user_id",
-        "uuid"
+      'customer',
+        'order_no',
+        'rate',
+        'product_id',
+        'status',
+        'order_date'
     ];
 
-    protected $casts = [
-        'order_date'    => 'date',
-        'created_at'    => 'datetime',
-        'updated_at'    => 'datetime',
-        'order_status'  => OrderStatus::class
-    ];
+//    protected $casts = [
+//        'order_date'    => 'date',
+//        'created_at'    => 'datetime',
+//        'updated_at'    => 'datetime',
+//        'order_status'  => OrderStatus::class
+//    ];
 
     public function customer(): BelongsTo
     {
