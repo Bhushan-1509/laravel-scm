@@ -57,6 +57,14 @@ class OrderController extends Controller
 
     public function store(OrderStoreRequest $request)
     {
+        $products = [];
+        for ($i = 1; $i <= $request['noOfProducts']; $i++) {
+            $productKey = 'product_' . $i;
+            $productId = $request->input($productKey);
+            $productName = $request->input('');
+            $products[] = ['name' => $productName];
+        }
+        $productsJson = json_encode(['products' => $products]);
         $order = Order::create([
             'order_date' => $request->order_date,
             'customer'=> $request->customer_id,

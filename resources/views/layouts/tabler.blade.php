@@ -596,8 +596,8 @@
 
     {{-- - Page Scripts - --}}
     @stack('page-scripts')
-
     @livewireScripts
+    @yield('scripts')
 </body>
 
 </html>
