@@ -13,11 +13,10 @@
         <button type="submit" class="btn btn-primary">Track Product</button>
     </form>
 
-    @if(request()->has('uuid') && $product != null)
-        echo ""
+    @if(request()->has('uuid'))
         <div class="card">
             <p class="heading-3">Challan No : {{ $product->challan_no }}</p>
-            <p class="heading-3">APM Challan No : {{ $product->apm_challan }}</p>
+            <p class="heading-3">APM Challan No : {{ $product->apm_challan_no }}</p>
             <p class="heading-3">Company Name : {{ $product->company_name }}</p>
         </div>
     <div class="card mt-3">
@@ -29,7 +28,8 @@
             @endfor
         </ul>
     </div>
-    @else
+    @endif
+    @if($product == null && request()->has('uuid'))
         <script>
             Swal.fire({
                 icon: "error",

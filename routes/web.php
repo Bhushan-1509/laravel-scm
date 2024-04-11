@@ -144,12 +144,13 @@ Route::middleware(['auth', '2fa'])->group(function () {
 //    })->name('items.create');
     Route::get('/track', function (Request $request){
         if(!$request->has('uuid')){
-            return view('track');
+            return view('track',['product' => null]);
 
         }
         else{
-            $uuid = trim($request->has('uuid'));
-            $product = Product::where('uuid', $uuid)->first();
+            $product = null;
+            $uuid = trim($request->get('uuid'));
+            $product = Product::query()->where('uuid','=', $uuid)->first();
             return view('track', ['product' => $product]);
         }
     })->name('track.material');
