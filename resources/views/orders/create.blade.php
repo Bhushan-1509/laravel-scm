@@ -53,7 +53,7 @@
                                             </option>
 
                                             @foreach ($customers as $customer)
-                                                <option value="{{ $customer->id }}">
+                                                <option value="{{ $customer->company_name }}">
                                                     {{ $customer->company_name }}
                                                 </option>
                                             @endforeach
@@ -149,12 +149,12 @@
                 select.classList.add('form-select', 'form-control');
                 select.name = 'product_' + i;
                 @php
-                    $products = \App\Models\Product::all();
+                    $products = \App\Models\Item::all();
                 @endphp
                 @foreach($products as $product)
                 var option = document.createElement('option');
-                option.text = '{{ $product->material_name }}'; // Assuming 'name' is the field in your Product model
-                option.value = '{{ $product->material_name }}'; // Assuming 'id' is the primary key in your Product model
+                option.text = '{{ $product->item_name }}'; // Assuming 'name' is the field in your Product model
+                option.value = '{{ $product->item_name }}'; // Assuming 'id' is the primary key in your Product model
                 select.add(option);
                 @endforeach
 

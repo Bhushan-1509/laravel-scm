@@ -27,6 +27,10 @@
                         <x-icon.plus />
                         {{ __('Export Raw material') }}
                     </a>
+                    <a href="{{ route('track.material') }}" class="dropdown-item">
+                        <x-icon.cart />
+                        {{ __('Track') }}
+                    </a>
                 </div>
             </div>
         </div>

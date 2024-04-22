@@ -37,26 +37,28 @@ class CustomerController extends Controller
 
     }
 
-    public function create($request)
+    public function create()
     {
-        Customer::create([
-            'uuid' => Str::uuid(),
-            'company_name' => $request->companyName,
-            'address' => $request->address,
-            'pincode' => $request->pincode,
-            'state' => $request->states,
-            'gst_no' => $request->gstNo,
-            'state' => $request->state,
-            'company_in_sez' => $request->companyInSez,
-            'company_type' => $request->companyType,
-            'distance_from_andheri' => $request->distanceFromAndheri,
-            'distance_from_vasai' => $request->distanceFromVasai,
+        $customers = Customer::all()->count();
+        $url = 'https://cdn-api.co-vin.in/api/v2/admin/location/states';
+        $client = new Client();
+        $states = null;
+        try {
+            // Send a GET request to the URL
+            $response = $client->get($url);
 
+            // Get the response body as a string
+            $body = $response->getBody()->getContents();
+            $statesRes = json_decode($body);
+            $states = $statesRes->states;
+        } catch (RequestException $e) {
+            // If an error occurs, handle it
+            dd($e->getMessage());
+        }
+        return view('customers.create', [
+            'states' => $states,
+            'customers' => $customers
         ]);
-
-        return redirect()
-            ->route('customers.index')
-            ->with('success', 'New customer has been created!');
     }
 
     public function store(StoreCustomerRequest $request)

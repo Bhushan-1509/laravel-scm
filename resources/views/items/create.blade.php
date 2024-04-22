@@ -218,29 +218,30 @@
 
 
 
-                                        <div class="col-md-12">
-                                            <div class="mb-3">
-                                                <label for="notes" class="form-label">
-                                                    {{ __('Notes') }}
-                                                </label>
+{{--                                        <div class="col-md-12">--}}
+{{--                                            <div class="mb-3">--}}
+{{--                                                <label for="notes" class="form-label">--}}
+{{--                                                    {{ __('Notes') }}--}}
+{{--                                                </label>--}}
 
-                                                <textarea name="notes"
-                                                          id="notes"
-                                                          rows="5"
-                                                          class="form-control @error('notes') is-invalid @enderror"
-                                                          placeholder="Notes"
-                                                ></textarea>
+{{--                                                <textarea name="notes"--}}
+{{--                                                          id="notes"--}}
+{{--                                                          rows="5"--}}
+{{--                                                          class="form-control @error('notes') is-invalid @enderror"--}}
+{{--                                                          placeholder="Notes"--}}
+{{--                                                ></textarea>--}}
 
-                                                @error('notes')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                                @enderror
-                                            </div>
-                                        </div>
+{{--                                                @error('notes')--}}
+{{--                                                <div class="invalid-feedback">--}}
+{{--                                                    {{ $message }}--}}
+{{--                                                </div>--}}
+{{--                                                @enderror--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
                                     </div>
                                 </div>
 
+                                <input type="hidden" name="uuid" value="">
 
                                 <div class="card-footer text-end">
                                     <x-button.save type="submit">

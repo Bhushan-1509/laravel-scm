@@ -16,9 +16,9 @@ class ProductExportController extends Controller
         $products = Product::all()->sortBy('product_name');
 
         $product_array[] = array(
+            'Material Name',
             'Company Name',
             'Challan No',
-            'Type',
             'APM Challan No',
             'Size',
             'Quantity',
@@ -33,9 +33,9 @@ class ProductExportController extends Controller
 
         foreach ($products as $product) {
             $product_array[] = array(
+                'Material Name' => $product->material_name,
                 'Company Name' => $product->company_name,
                 'Challan No' => $product->challan_no,
-                'Type' => $product->type,
                 'APM Challan No' => $product->apm_challan_no,
                 'Size' => $product->size,
                 'quantity' => $product->quantity,

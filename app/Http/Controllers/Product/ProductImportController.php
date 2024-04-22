@@ -36,9 +36,9 @@ class ProductImportController extends Controller
             $data = array();
             foreach ($row_range as $row) {
                 $data[] = [
-                    'company_name'          => $sheet->getCell('A' . $row)->getValue(),
-                    'challan_no'          => $sheet->getCell('B' . $row)->getValue(),
-                    'type'   => $sheet->getCell('C' . $row)->getValue(),
+                    'material_name' => $sheet->getCell('A' . $row)->getValue(),
+                    'company_name'         => $sheet->getCell('B' . $row)->getValue(),
+                    'challan_no'          => $sheet->getCell('C' . $row)->getValue(),
                     'apm_challan_no'       => $sheet->getCell('D' . $row)->getValue(),
                     'size'          => $sheet->getCell('E' . $row)->getValue(),
                     'quantity'      => $sheet->getCell('F' . $row)->getValue(),
@@ -55,9 +55,9 @@ class ProductImportController extends Controller
             foreach ($data as $product) {
                 Product::firstOrCreate([
                     'uuid'=> \Ramsey\Uuid\Nonstandard\Uuid::uuid4(),
+                    'material_name'=> $product['material_name'],
                     'company_name' => $product['company_name'],
                     'challan_no' => $product['challan_no'],
-                    'type'   => $product['type'],
                     'apm_challan_no'  => $product['apm_challan_no'],
                     'size'          => $product['size'],
                     'quantity'      => $product['quantity'],

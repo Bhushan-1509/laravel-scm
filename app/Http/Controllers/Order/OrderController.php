@@ -55,14 +55,14 @@ class OrderController extends Controller
         ]);
     }
 
-    public function store(OrderStoreRequest $request)
+    public function store(Request $request)
     {
         $products = [];
         for ($i = 1; $i <= $request['noOfProducts']; $i++) {
             $productKey = 'product_' . $i;
-            $productId = $request->input($productKey);
-            $productName = $request->input('');
+            $productName = $request->input($productKey);
             $products[] = ['name' => $productName];
+
         }
         $productsJson = json_encode(['products' => $products]);
         $order = Order::create([
@@ -70,7 +70,7 @@ class OrderController extends Controller
             'customer'=> $request->customer_id,
             'order_no' => $request->orderNo,
             'rate' => $request->rate,
-            'product_id' => $request->product_id
+            'products' => $productsJson
         ]);
 
 

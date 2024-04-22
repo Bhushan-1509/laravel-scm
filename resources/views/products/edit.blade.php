@@ -101,25 +101,25 @@
                                         </div>
 
 
-                                        <div class="col-sm-6 col-md-6">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="unit_id">
-                                                    {{ __('Type') }}
-                                                    <span class="text-danger">*</span>
-                                                </label>
+{{--                                        <div class="col-sm-6 col-md-6">--}}
+{{--                                            <div class="mb-3">--}}
+{{--                                                <label class="form-label" for="unit_id">--}}
+{{--                                                    {{ __('Type') }}--}}
+{{--                                                    <span class="text-danger">*</span>--}}
+{{--                                                </label>--}}
 
-                                                <input type="text" id="type" name="type"
-                                                       class="form-control @error('type') is-invalid @enderror"
-                                                       placeholder="0"
-                                                       value="{{ old('type', $product->type) }}">
+{{--                                                <input type="text" id="type" name="type"--}}
+{{--                                                       class="form-control @error('type') is-invalid @enderror"--}}
+{{--                                                       placeholder="0"--}}
+{{--                                                       value="{{ old('type', $product->type) }}">--}}
 
-                                                @error('type')
-                                                    <div class="invalid-feedback">
-                                                        {{ $message }}
-                                                    </div>
-                                                @enderror
-                                            </div>
-                                        </div>
+{{--                                                @error('type')--}}
+{{--                                                    <div class="invalid-feedback">--}}
+{{--                                                        {{ $message }}--}}
+{{--                                                    </div>--}}
+{{--                                                @enderror--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
 
                                         <div class="col-sm-6 col-md-6">
                                             <div class="mb-3">

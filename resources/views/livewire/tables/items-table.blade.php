@@ -102,6 +102,9 @@
                     <td class="align-middle text-center">
                         {{ $item->quantity }}
                     </td>
+                    <td class="align-middle text-center">
+                        ₹{{ $item->total }}
+                    </td>
 {{--                    <td class="align-middle text-center">--}}
 {{--                        ₹{{ $item->total }}--}}
 {{--                    </td>--}}

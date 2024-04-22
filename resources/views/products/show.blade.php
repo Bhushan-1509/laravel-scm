@@ -92,13 +92,13 @@
                                             <td>{!! $qrcode !!}</td>
                                         </tr>
                                         <tr>
-                                            <td>Type</td>
+                                            <td>Product ID</td>
                                             <td>
 {{--                                                <a href="{{ route('categories.show', $product->category) }}"--}}
 {{--                                                    class="badge bg-blue-lt">--}}
 {{--                                                    {{ $product->category->name }}--}}
 {{--                                                </a>--}}
-                                                {{ $product->type }}
+                                                {{ $product->uuid }}
                                             </td>
                                         </tr>
                                         <tr>

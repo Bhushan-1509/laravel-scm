@@ -46,13 +46,12 @@ class ProductController extends Controller
         ]);
     }
 
-    public function store(StoreProductRequest $request)
+    public function store(Request $request)
     {
-
         Product::create([
-
+            'uuid' => Uuid::uuid4(),
+                'material_name' => $request->materialName,
                 'company_name' => $request->companyName,
-    //        $product->slug = Str::slug($request->name, '-');
             'challan_no' => $request->challanNo,
             'apm_challan_no' => $request->apmChallanNo,
             'size' => $request->size,
@@ -67,7 +66,7 @@ class ProductController extends Controller
         ]);
 
 
-        return to_route('products.index')->with('success', 'Product has been created!');
+        return to_route('products.index')->with('success', 'Material has been created!');
     }
 
     public function show($uuid)
@@ -75,9 +74,15 @@ class ProductController extends Controller
         $product = Product::where("uuid", $uuid)->firstOrFail();
         // Generate a barcode
         $generator = new BarcodeGeneratorHTML();
-/*        $barcode = $generator->getBarcode($product->uuid, $generator::TYPE_CODE_128);*/
-//        $qrcode = QrCode::size(300)->generateSVG($uuid);
-        $qrcode = generateQrCode($uuid);
+        $ipconfigOutput = shell_exec('ipconfig');
+//        dd($ipconfigOutput);
+        $pattern = '/Wireless LAN adapter.*?(IPv4 Address.*?:\s*([0-9.]+))/s';
+        $uri = null;
+        if (preg_match($pattern, $ipconfigOutput, $matches)) {
+            $ipAddress = $matches[2];
+            $uri = "http://" . $ipAddress . ":8000/track?uuid=" . $uuid;
+        }
+        $qrcode = generateQrCode($uri);
 //        dd($qrcode);
 
         return view('products.show', [
@@ -102,7 +107,6 @@ class ProductController extends Controller
         $product->company_name = $request->companyName;
 //        $product->slug = Str::slug($request->name, '-');
         $product->challan_no = $request->challanNo;
-        $product->type = $request->type;
         $product->apm_challan_no = $request->apmChallanNo;
         $product->size = $request->size;
         $product->quantity = $request->quantity;

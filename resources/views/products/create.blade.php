@@ -60,10 +60,20 @@
                             <div class="card-body">
                                 <div class="row row-cards">
                                     <div class="col-md-12">
-                                        <x-input name="Company Name"
+                                        <x-input label="Material Name"
                                                  id="name"
                                                  placeholder="Company name"
-                                                 value="{{ old('name') }}"
+                                                 value="{{ old('materialName') }}"
+                                                 required="true"
+                                                 name="materialName"
+                                        />
+
+                                    </div>
+                                    <div class="col-md-12">
+                                        <x-input label="Company Name" name="companyName"
+                                                 id="name"
+                                                 placeholder="Company name"
+                                                 value="{{ old('companyName') }}"
                                                  required="true"
                                         />
 
@@ -71,41 +81,11 @@
 
                                     <div class="col-sm-6 col-md-6">
                                         <div class="mb-3">
-                                            <label for="category_id" class="form-label">
-                                                Challan No
-                                                <span class="text-danger">*</span>
-                                            </label>
 
-{{--                                            @if ($categories->count() === 1)--}}
-{{--                                                <select name="category_id" id="category_id"--}}
-{{--                                                        class="form-select @error('category_id') is-invalid @enderror"--}}
-{{--                                                        readonly--}}
-{{--                                                >--}}
-{{--                                                    @foreach ($categories as $category)--}}
-{{--                                                        <option value="{{ $category->id }}" selected>--}}
-{{--                                                            {{ $category->name }}--}}
-{{--                                                        </option>--}}
-{{--                                                    @endforeach--}}
-{{--                                                </select>--}}
-{{--                                            @else--}}
-{{--                                                <select name="category_id" id="category_id"--}}
-{{--                                                        class="form-select @error('category_id') is-invalid @enderror"--}}
-{{--                                                >--}}
-{{--                                                    <option selected="" disabled="">--}}
-{{--                                                        Select a category:--}}
-{{--                                                    </option>--}}
-
-{{--                                                    @foreach ($categories as $category)--}}
-{{--                                                        <option value="{{ $category->id }}" @if(old('category_id') == $category->id) selected="selected" @endif>--}}
-{{--                                                            {{ $category->name }}--}}
-{{--                                                        </option>--}}
-{{--                                                    @endforeach--}}
-{{--                                                </select>--}}
-{{--                                            @endif--}}
-                                            <x-input name=""
+                                            <x-input label="Challan No" name="challanNo"
                                                      id="challanNo"
                                                      placeholder="Example : CHL-2024-ABC-123456"
-                                                     value="{{ old('name') }}"
+                                                     value="{{ old('challanNo') }}"
                                             />
                                             @error('category_id')
                                             <div class="invalid-feedback">
@@ -114,46 +94,6 @@
                                             @enderror
                                         </div>
                                     </div>
-
-{{--                                    <div class="col-sm-6 col-md-6">--}}
-{{--                                        <div class="mb-3">--}}
-{{--                                            <label class="form-label" for="unit_id">--}}
-{{--                                                {{ __('Type') }}--}}
-{{--                                                <span class="text-danger">*</span>--}}
-{{--                                            </label>--}}
-
-{{--                                            @if ($units->count() === 1)--}}
-{{--                                                <select name="category_id" id="category_id"--}}
-{{--                                                        class="form-select @error('category_id') is-invalid @enderror"--}}
-{{--                                                        readonly--}}
-{{--                                                >--}}
-{{--                                                    @foreach ($units as $unit)--}}
-{{--                                                        <option value="{{ $unit->id }}" selected>--}}
-{{--                                                            {{ $unit->name }}--}}
-{{--                                                        </option>--}}
-{{--                                                    @endforeach--}}
-{{--                                                </select>--}}
-{{--                                            @else--}}
-{{--                                                <select name="unit_id" id="unit_id"--}}
-{{--                                                        class="form-select @error('unit_id') is-invalid @enderror"--}}
-{{--                                                >--}}
-{{--                                                    <option selected="" disabled="">--}}
-{{--                                                        Select a unit:--}}
-{{--                                                    </option>--}}
-
-{{--                                                    @foreach ($units as $unit)--}}
-{{--                                                        <option value="{{ $unit->id }}" @if(old('unit_id') == $unit->id) selected="selected" @endif>{{ $unit->name }}</option>--}}
-{{--                                                    @endforeach--}}
-{{--                                                </select>--}}
-{{--                                            @endif--}}
-
-{{--                                            @error('unit_id')--}}
-{{--                                            <div class="invalid-feedback">--}}
-{{--                                                {{ $message }}--}}
-{{--                                            </div>--}}
-{{--                                            @enderror--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
 
                                     <div class="col-sm-6 col-md-6">
                                         <x-input type="text"
@@ -211,25 +151,7 @@
 
                                     <div class="col-sm-6 col-md-6">
                                         <div class="mb-3">
-{{--                                            <label class="form-label" for="tax_type">--}}
-{{--                                                {{ __('Cutting Weight') }}--}}
-{{--                                            </label>--}}
 
-{{--                                            <select name="tax_type" id="tax_type"--}}
-{{--                                                    class="form-select @error('tax_type') is-invalid @enderror"--}}
-{{--                                            >--}}
-{{--                                                @foreach(\App\Enums\TaxType::cases() as $taxType)--}}
-{{--                                                <option value="{{ $taxType->value }}" @selected(old('tax_type') == $taxType->value)>--}}
-{{--                                                    {{ $taxType->label() }}--}}
-{{--                                                </option>--}}
-{{--                                                @endforeach--}}
-{{--                                            </select>--}}
-
-{{--                                            @error('tax_type')--}}
-{{--                                            <div class="invalid-feedback">--}}
-{{--                                                {{ $message }}--}}
-{{--                                            </div>--}}
-{{--                                            @enderror--}}
                                             <x-input type="number" name="cuttingWeight"
                                                      label="Cutting Weight"
                                                      id="tax_type"
@@ -246,12 +168,12 @@
                                                 <span class="text-danger">*</span>
                                             </label>
 
-                                            <select name="tax_type" id="tax_type"
-                                                    class="form-select @error('tax_type') is-invalid @enderror"
+                                            <select name="orderNo" id="tax_type"
+                                                    class="form-select @error('orderNo') is-invalid @enderror"
                                             >
-                                                @foreach(\App\Enums\TaxType::cases() as $taxType)
-                                                    <option value="{{ $taxType->value }}" @selected(old('tax_type') == $taxType->value)>
-                                                        {{ $taxType->label() }}
+                                                @foreach(\App\Models\Order::all() as $order)
+                                                    <option value="{{ $order->order_no }}" @selected(old('orderNo') == $order->order_no)>
+                                                        {{ $order->order_no }}
                                                     </option>
                                                 @endforeach
                                             </select>

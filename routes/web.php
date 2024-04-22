@@ -142,18 +142,6 @@ Route::middleware(['auth', '2fa'])->group(function () {
 //    Route::get('items/create', function(){
 //        return view('items.create', ['items' => null]);
 //    })->name('items.create');
-    Route::get('/track', function (Request $request){
-        if(!$request->has('uuid')){
-            return view('track',['product' => null]);
-
-        }
-        else{
-            $product = null;
-            $uuid = trim($request->get('uuid'));
-            $product = Product::query()->where('uuid','=', $uuid)->first();
-            return view('track', ['product' => $product]);
-        }
-    })->name('track.material');
 
     Route::resource('/items', \App\Http\Controllers\Item\ItemController::class)->names([
         'index' => 'items.index',
@@ -169,6 +157,21 @@ Route::middleware(['auth', '2fa'])->group(function () {
     Route::post('/quotations/complete/{quotation}', [QuotationController::class, 'update'])->name('quotations.update');
     Route::delete('/quotations/delete/{quotation}', [QuotationController::class, 'destroy'])->name('quotations.delete');
 });
+
+
+Route::get('/track', function (Request $request){
+    if(!$request->has('uuid')){
+        return view('track',['product' => null]);
+
+    }
+    else{
+        $product = null;
+        $uuid = trim($request->get('uuid'));
+        $product = Product::query()->where('uuid','=', $uuid)->first();
+        return view('track', ['product' => $product]);
+    }
+})->name('track.material');
+
 
 require __DIR__.'/auth.php';
 

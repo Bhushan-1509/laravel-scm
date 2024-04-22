@@ -10,42 +10,42 @@
                     @csrf
 
                     <div class="row">
-                        <div class="col-lg-4">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h3 class="card-title">
-                                        {{ __('Product Image') }}
-                                    </h3>
+{{--                        <div class="col-lg-4">--}}
+{{--                            <div class="card">--}}
+{{--                                <div class="card-body">--}}
+{{--                                    <h3 class="card-title">--}}
+{{--                                        {{ __('Product Image') }}--}}
+{{--                                    </h3>--}}
 
-                                    <img class="img-account-profile mb-2" src="{{ asset('assets/img/products/default.webp') }}" alt="" id="image-preview" />
+{{--                                    <img class="img-account-profile mb-2" src="{{ asset('assets/img/products/default.webp') }}" alt="" id="image-preview" />--}}
 
-                                    <div class="small font-italic text-muted mb-2">
-                                        JPG or PNG no larger than 2 MB
-                                    </div>
+{{--                                    <div class="small font-italic text-muted mb-2">--}}
+{{--                                        JPG or PNG no larger than 2 MB--}}
+{{--                                    </div>--}}
 
-                                    <input
-                                        type="file"
-                                        accept="image/*"
-                                        id="image"
-                                        name="productImage"
-                                        class="form-control @error('product_image') is-invalid @enderror"
-                                        onchange="previewImage();">
+{{--                                    <input--}}
+{{--                                        type="file"--}}
+{{--                                        accept="image/*"--}}
+{{--                                        id="image"--}}
+{{--                                        name="productImage"--}}
+{{--                                        class="form-control @error('product_image') is-invalid @enderror"--}}
+{{--                                        onchange="previewImage();">--}}
 
-                                    @error('productImage')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
+{{--                                    @error('productImage')--}}
+{{--                                    <div class="invalid-feedback">--}}
+{{--                                        {{ $message }}--}}
+{{--                                    </div>--}}
+{{--                                    @enderror--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
-                        <div class="col-lg-8">
+                        <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-header">
                                     <div>
                                         <h3 class="card-title">
-                                            {{ __('Add Product') }}
+                                            {{ __('Edit Product') }}
                                         </h3>
                                     </div>
 
@@ -62,7 +62,7 @@
                                                      label="Product Name"
                                                      id="productName"
                                                      placeholder="Product name"
-                                                     value="{{ old('productName') }}"
+                                                     value="{{ $product->item_name }}"
                                                      required="true"
                                             />
                                         </div>
@@ -106,7 +106,7 @@
                                                          id="rodDiameter"
                                                          placeholder="0"
                                                          required="true"
-                                                         value="{{ old('rodDiameter') }}"
+                                                         value="{{ $product->rod_diameter }}"
                                                 />
                                                 @error('rodDiameter')
                                                 <div class="invalid-feedback">
@@ -159,7 +159,7 @@
                                                          id="unitWeight"
                                                          placeholder="0"
                                                          required="true"
-                                                         value="{{ old('unitWeight') }}"
+                                                         value="{{ $product->unit_weight }}"
                                                 />
                                                 @error('unitWeight')
                                                 <div class="invalid-feedback">
@@ -175,7 +175,7 @@
                                                      name="unitPrice"
                                                      id="unitPrice"
                                                      placeholder="0"
-                                                     value="{{ old('unitPrice') }}"
+                                                     value="{{ $product->unit_price }}"
                                                      required="true"
                                             />
                                             @error('unitPrice')
@@ -191,7 +191,7 @@
                                                      name="quantity"
                                                      id="quantity"
                                                      placeholder="0"
-                                                     value="{{ old('quantity') }}"
+                                                     value="{{ $product->quantity }}"
                                                      required="true"
                                             />
                                             @error('quantity')
@@ -207,7 +207,7 @@
                                                      name="total"
                                                      id="total"
                                                      placeholder="0"
-                                                     value="{{ old('total') }}"
+                                                     value="{{ $product->total }}"
                                             />
                                             @error('total')
                                             <div class="invalid-feedback">
@@ -218,33 +218,33 @@
 
 
 
-                                        <div class="col-md-12">
-                                            <div class="mb-3">
-                                                <label for="notes" class="form-label">
-                                                    {{ __('Notes') }}
-                                                </label>
+{{--                                        <div class="col-md-12">--}}
+{{--                                            <div class="mb-3">--}}
+{{--                                                <label for="notes" class="form-label">--}}
+{{--                                                    {{ __('Notes') }}--}}
+{{--                                                </label>--}}
 
-                                                <textarea name="notes"
-                                                          id="notes"
-                                                          rows="5"
-                                                          class="form-control @error('notes') is-invalid @enderror"
-                                                          placeholder="Notes"
-                                                ></textarea>
+{{--                                                <textarea name="notes"--}}
+{{--                                                          id="notes"--}}
+{{--                                                          rows="5"--}}
+{{--                                                          class="form-control @error('notes') is-invalid @enderror"--}}
+{{--                                                          placeholder="Notes"--}}
+{{--                                                ></textarea>--}}
 
-                                                @error('notes')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                                @enderror
-                                            </div>
-                                        </div>
+{{--                                                @error('notes')--}}
+{{--                                                <div class="invalid-feedback">--}}
+{{--                                                    {{ $message }}--}}
+{{--                                                </div>--}}
+{{--                                                @enderror--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
                                     </div>
                                 </div>
-
+                                <input type="hidden" name="uuid" value="{{ $product->uuid }}">
 
                                 <div class="card-footer text-end">
                                     <x-button.save type="submit">
-                                        {{ __('Save') }}
+                                        {{ __('Update') }}
                                     </x-button.save>
 
                                     <a class="btn btn-warning" href="{{ url()->previous() }}">
